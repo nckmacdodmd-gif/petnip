@@ -9,3 +9,6 @@ ENG/ Petnip is a digital platform designed to facilitate and humanize the proces
 Its purpose is to connect NGOs and animal rescuers to a community of users willing to help in a practical and safe way.
 
 For every animal looking for a home, there is a heart ready to love, and through the app, users can find their new best friend by exploring detailed profiles by location, size, and age, or they can choose to transform a life through sponsorship, contributing food, vaccines, and essential care.
+
+-----------------------------------------------------------
+Planejamento de Projeto: P1 - https://canva.link/7234lxnjhnzs053
