@@ -11,4 +11,4 @@ Its purpose is to connect NGOs and animal rescuers to a community of users willi
 For every animal looking for a home, there is a heart ready to love, and through the app, users can find their new best friend by exploring detailed profiles by location, size, and age, or they can choose to transform a life through sponsorship, contributing food, vaccines, and essential care.
 
 -----------------------------------------------------------
-Planejamento de Projeto: P1 - https://canva.link/7234lxnjhnzs053
+Planejamento de Projeto: P1 - https://drive.google.com/file/d/1TzNHSxPmaozYSEptg-tKpld7jmknGZR5/view?usp=sharing
