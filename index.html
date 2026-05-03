@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Petnip – Adoção & Apadrinhamento</title>
+
+  <!-- Self-hosted fonts via GitHub raw (fallback to system) -->
+  <style>
+    @font-face {
+      font-family: 'Nunito';
+      src: url('https://raw.githubusercontent.com/nckmacdodmd-gif/petnip/9a65d705384f7bb5cd7277be9193b28173609aa5/Fontes/Nunito-Bold.otf') format('opentype');
+      font-weight: 700;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: 'Poppins';
+      src: url('https://raw.githubusercontent.com/nckmacdodmd-gif/petnip/9a65d705384f7bb5cd7277be9193b28173609aa5/Fontes/Poppins-Regular.ttf') format('truetype');
+      font-weight: 400;
+      font-style: normal;
+    }
+
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green:       #1a7a4a;
+      --pink:        #f7549a;
+      --pink-light:  #fce4ef;
+      --pink-bg:     #f7549a;
+      --white:       #ffffff;
+      --gray-light:  #f5f5f5;
+      --gray-mid:    #e0e0e0;
+      --text-dark:   #222222;
+      --text-body:   #444444;
+      --purple:      #6c4de6;
+      --yellow:      #f5d253;
+      --star-orange: #f5a623;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      color: var(--text-dark);
+      background: var(--white);
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4, h5, h6,
+    .logo-text, .nav-link, .btn, .section-title {
+      font-family: 'Nunito', sans-serif;
+    }
+
+    /* ===== NAV ===== */
+    nav {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 60px;
+      padding: 22px 40px;
+      background: var(--white);
+    }
+
+    nav a {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.95rem;
+      color: var(--text-dark);
+      text-decoration: none;
+      transition: color .2s;
+    }
+    nav a:hover { color: var(--pink); }
+
+    /* ===== HERO ===== */
+    .hero {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 40px 80px 0 80px;
+      position: relative;
+      background: var(--white);
+      min-height: 420px;
+    }
+
+    .hero-left { max-width: 340px; }
+
+    .hero-logo {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 22px;
+    }
+
+    .logo-svg { width: 240px; }
+
+    .logo-tagline {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.85rem;
+      color: var(--pink);
+      margin-top: 2px;
+      letter-spacing: 0.5px;
+    }
+
+    .hero-right {
+      max-width: 380px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .hero-right p {
+      font-size: 0.97rem;
+      line-height: 1.65;
+      color: var(--text-body);
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      padding: 12px 24px;
+      border-radius: 50px;
+      border: none;
+      cursor: pointer;
+      transition: opacity .2s, transform .15s;
+    }
+    .btn:hover { opacity: .88; transform: translateY(-1px); }
+
+    .btn-green  { background: var(--green);  color: var(--white); }
+    .btn-pink   { background: var(--pink);   color: var(--white); }
+    .btn-purple { background: var(--purple); color: var(--white); }
+
+    /* ===== HERO CAT ===== */
+    .hero-cat-wrapper {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 440px;
+      pointer-events: none;
+      z-index: 2;
+    }
+    .hero-cat-wrapper img {
+      width: 100%;
+      display: block;
+    }
+
+    /* Pink wave beneath hero */
+    .hero-wave {
+      position: relative;
+      background: var(--pink-bg);
+      margin-top: -1px;
+      padding-top: 160px;
+      padding-bottom: 60px;
+      overflow: hidden;
+    }
+
+    .hero-wave::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 180px;
+      background: var(--white);
+      border-radius: 0 0 55% 55% / 0 0 80px 80px;
+    }
+
+    /* ===== CAUSE SECTION ===== */
+    .cause-section {
+      background: var(--pink-bg);
+      padding: 0 80px 70px 80px;
+      display: flex;
+      gap: 60px;
+      align-items: flex-start;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cause-left { flex: 1; }
+
+    .cause-left h2 {
+      font-family: 'Nunito', sans-serif;
+      font-size: 2.6rem;
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.15;
+      margin-bottom: 28px;
+    }
+
+    .cause-card {
+      background: var(--white);
+      border-radius: 18px;
+      padding: 28px 30px;
+      max-width: 360px;
+      position: relative;
+    }
+
+    /* dashed top border decoration */
+    .cause-card::before {
+      content: '';
+      display: block;
+      width: 100%;
+      height: 10px;
+      background-image: repeating-linear-gradient(
+        90deg,
+        var(--pink) 0, var(--pink) 14px,
+        transparent 14px, transparent 22px
+      );
+      border-radius: 4px;
+      margin-bottom: 18px;
+    }
+
+    .cause-card p {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.88rem;
+      line-height: 1.7;
+      color: var(--text-body);
+    }
+
+    .cause-card p strong { color: var(--text-dark); }
+
+    /* paperclip decoration */
+    .cause-card .clip {
+      position: absolute;
+      top: -18px;
+      right: 28px;
+      font-size: 2rem;
+      transform: rotate(20deg);
+      color: var(--green);
+    }
+
+    /* star decorations */
+    .star {
+      position: absolute;
+      font-size: 1.6rem;
+      color: var(--yellow);
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .cause-right {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 28px;
+      padding-top: 10px;
+    }
+
+    /* polaroids */
+    .polaroids {
+      position: relative;
+      width: 320px;
+      height: 240px;
+      margin-left: auto;
+    }
+
+    .polaroid {
+      position: absolute;
+      background: var(--white);
+      padding: 10px 10px 34px 10px;
+      box-shadow: 4px 6px 18px rgba(0,0,0,.18);
+      border-radius: 3px;
+    }
+
+    .polaroid img {
+      width: 160px;
+      height: 130px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .polaroid-dog {
+      top: 0; left: 10px;
+      transform: rotate(-6deg);
+      z-index: 2;
+    }
+
+    .polaroid-cat {
+      top: 30px; right: 0;
+      transform: rotate(5deg);
+      z-index: 1;
+    }
+
+    .cause-right-text {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.88rem;
+      line-height: 1.75;
+      color: var(--white);
+      max-width: 340px;
+    }
+
+    /* ===== TICKER BAND ===== */
+    .ticker-wrap {
+      background: var(--green);
+      overflow: hidden;
+      white-space: nowrap;
+      padding: 10px 0;
+    }
+    .ticker-inner {
+      display: inline-block;
+      animation: ticker 18s linear infinite;
+    }
+    .ticker-inner span {
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--white);
+      padding: 0 8px;
+    }
+
+    /* second row */
+    .ticker-inner2 {
+      display: inline-block;
+      animation: ticker2 22s linear infinite;
+    }
+    .ticker-inner2 span {
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--white);
+      padding: 0 8px;
+    }
+
+    @keyframes ticker  { from { transform: translateX(0); }   to { transform: translateX(-50%); } }
+    @keyframes ticker2 { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+
+    /* ===== REVIEWS ===== */
+    .reviews-section {
+      padding: 70px 80px 60px 80px;
+      background: var(--white);
+    }
+
+    .reviews-section h2 {
+      font-family: 'Nunito', sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--green);
+      line-height: 1.25;
+      margin-bottom: 6px;
+    }
+
+    .reviews-meta {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.85rem;
+      color: var(--text-body);
+      margin-bottom: 36px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .paw-icon { color: var(--pink); font-size: 1.1rem; }
+
+    .review-card {
+      background: var(--gray-light);
+      border-radius: 16px;
+      padding: 32px 36px;
+      max-width: 680px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .review-stars {
+      color: var(--star-orange);
+      font-size: 1.5rem;
+      margin-bottom: 14px;
+      letter-spacing: 2px;
+    }
+
+    .review-text {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.9rem;
+      line-height: 1.7;
+      color: var(--text-body);
+      margin-bottom: 20px;
+    }
+
+    .review-author strong {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.9rem;
+      color: var(--text-dark);
+      display: block;
+    }
+    .review-author span {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.82rem;
+      color: var(--text-body);
+    }
+
+    /* paw decorations */
+    .paw-deco-left  { position: absolute; left: -50px; bottom: 10px; font-size: 2.5rem; color: var(--pink); opacity: .35; }
+    .paw-deco-right { position: absolute; right: -50px; top: 10px; font-size: 2rem; color: var(--pink); opacity: .3; }
+
+    .review-dots {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 28px;
+    }
+    .review-dots span {
+      display: inline-block;
+      width: 24px;
+      height: 7px;
+      border-radius: 4px;
+      background: var(--purple);
+      opacity: .35;
+    }
+    .review-dots span.active { opacity: 1; }
+
+    /* ===== PARTNERS ===== */
+    .partners-section {
+      padding: 60px 80px 70px 80px;
+      background: var(--white);
+    }
+
+    .partners-section h2 {
+      font-family: 'Nunito', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--green);
+      margin-bottom: 6px;
+    }
+
+    .partners-section p {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.88rem;
+      color: var(--text-body);
+      margin-bottom: 40px;
+    }
+
+    .partners-img { width: 100%; max-width: 860px; display: block; margin: 0 auto; }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: var(--pink-bg);
+      color: var(--white);
+      padding: 56px 80px 30px 80px;
+    }
+
+    .footer-top {
+      display: flex;
+      gap: 80px;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+    }
+
+    .footer-brand { flex: 1; min-width: 180px; }
+
+    .footer-logo-text {
+      font-family: 'Nunito', sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .footer-social-label {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.82rem;
+      color: var(--white);
+      opacity: .85;
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 10px;
+    }
+
+    .social-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      background: var(--white);
+      color: var(--pink);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: opacity .2s;
+    }
+    .social-icon:hover { opacity: .8; }
+
+    .footer-nav { flex: 1; min-width: 120px; }
+
+    .footer-nav h4 {
+      font-family: 'Nunito', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 14px;
+    }
+
+    .footer-nav a {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.84rem;
+      color: var(--white);
+      opacity: .85;
+      text-decoration: none;
+      display: block;
+      margin-bottom: 7px;
+      transition: opacity .2s;
+    }
+    .footer-nav a:hover { opacity: 1; }
+
+    .footer-newsletter { flex: 1.4; min-width: 220px; }
+
+    .footer-newsletter h4 {
+      font-family: 'Nunito', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 14px;
+    }
+
+    .newsletter-input {
+      width: 100%;
+      padding: 11px 16px;
+      border-radius: 8px;
+      border: none;
+      background: rgba(255,255,255,.15);
+      color: var(--white);
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.85rem;
+      margin-bottom: 10px;
+      outline: none;
+    }
+    .newsletter-input::placeholder { color: rgba(255,255,255,.7); }
+
+    .newsletter-btn {
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 700;
+      padding: 10px 30px;
+      background: var(--white);
+      color: var(--pink);
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: opacity .2s;
+    }
+    .newsletter-btn:hover { opacity: .88; }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,.25);
+      padding-top: 18px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .footer-bottom a {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.78rem;
+      color: var(--white);
+      opacity: .8;
+      text-decoration: none;
+    }
+    .footer-bottom a:hover { opacity: 1; }
+
+    /* ===== RESPONSIVE HELPERS ===== */
+    @media (max-width: 900px) {
+      nav { gap: 24px; }
+      .hero { flex-direction: column; padding: 30px 28px 0; text-align: center; }
+      .hero-left { max-width: 100%; }
+      .hero-right { max-width: 100%; }
+      .hero-buttons { justify-content: center; }
+      .hero-cat-wrapper { position: relative; left: auto; transform: none; width: 280px; margin: 20px auto 0; }
+      .cause-section { flex-direction: column; padding: 30px 28px 50px; }
+      .polaroids { margin: 0 auto; }
+      .reviews-section, .partners-section, footer { padding-left: 28px; padding-right: 28px; }
+      .footer-top { gap: 36px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===================== NAV ===================== -->
+<nav>
+  <a href="#">Home</a>
+  <a href="#">Sobre nós</a>
+  <a href="#">Aplicativo</a>
+  <a href="#">Planos</a>
+  <a href="#">Contato</a>
+</nav>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero">
+  <!-- Left: logo -->
+  <div class="hero-left">
+    <div class="hero-logo">
+      <!-- Petnip SVG logo (text-based, matching the green paw-letter style) -->
+      <svg class="logo-svg" viewBox="0 0 260 80" xmlns="http://www.w3.org/2000/svg">
+        <!-- Ghost icon -->
+        <g transform="translate(0,8)">
+          <ellipse cx="22" cy="30" rx="18" ry="22" fill="#1a7a4a"/>
+          <rect x="4" y="30" width="36" height="20" fill="#1a7a4a"/>
+          <path d="M4 50 q4.5-8 9 0 q4.5-8 9 0 q4.5-8 9 0 q4.5-8 9 0" fill="#1a7a4a"/>
+          <circle cx="14" cy="28" r="3" fill="white"/>
+          <circle cx="30" cy="28" r="3" fill="white"/>
+        </g>
+        <!-- Petnip wordmark -->
+        <text x="52" y="58" font-family="Nunito, sans-serif" font-weight="700" font-size="46" fill="#1a7a4a" letter-spacing="-1">Petnip</text>
+        <!-- Dots on i -->
+        <circle cx="194" cy="14" r="5" fill="#f7549a"/>
+        <circle cx="228" cy="14" r="5" fill="#f7549a"/>
+      </svg>
+      <span class="logo-tagline">Adoção &amp; Apadrinhamento</span>
+    </div>
+  </div>
+
+  <!-- Center: cat image -->
+  <div class="hero-cat-wrapper">
+    <img
+      src="https://raw.githubusercontent.com/nckmacdodmd-gif/petnip/9a65d705384f7bb5cd7277be9193b28173609aa5/Imagens/Gatinho.png"
+      alt="Gatinho com óculos"
+      onerror="this.src='/mnt/user-data/uploads/Gatinho.png'"
+    />
+  </div>
+
+  <!-- Right: text + buttons -->
+  <div class="hero-right">
+    <p>Para cada animal em busca de um lar, existe um coração pronto para amar e, por meio da Petnip, você pode encontrar seu novo melhor amigo!</p>
+    <div class="hero-buttons">
+      <button class="btn btn-green">Baixe nosso app</button>
+      <button class="btn btn-pink">Nos siga nas redes</button>
+    </div>
+  </div>
+</section>
+
+<!-- Pink wave transition -->
+<div class="hero-wave"></div>
+
+<!-- ===================== CAUSE ===================== -->
+<section class="cause-section">
+  <!-- Star decorations -->
+  <span class="star" style="top:-30px; left:60px;">★</span>
+  <span class="star" style="bottom:20px; left:280px; font-size:1rem;">★</span>
+  <span class="star" style="top:80px; right:320px; font-size:1.1rem;">★</span>
+
+  <div class="cause-left">
+    <h2>Faça parte<br>dessa causa!</h2>
+    <div class="cause-card">
+      <span class="clip">📎</span>
+      <p>Nosso objetivo é <strong>facilitar e humanizar o processo de adoção e doação de suprimentos para ONGs que cuidam de animais</strong> em situação de vulnerabilidade.</p>
+      <br>
+      <p>Buscamos oferecer aos usuários uma plataforma prática e acessível, que conecte corações dispostos a ajudar com causas que realmente precisam de apoio, seja por meio de adoção ou apadrinhamento.</p>
+    </div>
+  </div>
+
+  <div class="cause-right">
+    <!-- Polaroid photos -->
+    <div class="polaroids">
+      <div class="polaroid polaroid-dog">
+        <img
+          src="https://raw.githubusercontent.com/nckmacdodmd-gif/petnip/9a65d705384f7bb5cd7277be9193b28173609aa5/Imagens/Polaroid%20cachorro.png"
+          alt="Cachorrinho"
+          onerror="this.src='/mnt/user-data/uploads/Polaroid_cachorro.png'"
+        />
+      </div>
+      <div class="polaroid polaroid-cat">
+        <img
+          src="https://raw.githubusercontent.com/nckmacdodmd-gif/petnip/9a65d705384f7bb5cd7277be9193b28173609aa5/Imagens/Polaroid%20gato.png"
+          alt="Gatinho"
+          onerror="this.src='/mnt/user-data/uploads/Polaroid_gato.png'"
+        />
+      </div>
+      <!-- star near polaroids -->
+      <span class="star" style="position:absolute; bottom:-20px; left:50%; font-size:1.8rem;">★</span>
+    </div>
+
+    <button class="btn btn-purple" style="margin-top:30px;">Saiba mais sobre nós</button>
+
+    <p class="cause-right-text">
+      A Petnip te conecta a uma comunidade de animais que precisam de um lar recheado de amor — você pode explorar por localização, raça, porte, e muito mais. E, com nossos planos de apadrinhamento, você também pode contribuir com alimentos, vacinas e cuidados especiais!
+    </p>
+  </div>
+</section>
+
+<!-- ===================== TICKER ===================== -->
+<div class="ticker-wrap">
+  <div class="ticker-inner">
+    <span>Petnip ❤</span><span>Petnip ❤</span><span>Petnip ❤</span><span>Petnip ❤</span>
+    <span>Petnip ❤</span><span>Petnip ❤</span><span>Petnip ❤</span><span>Petnip ❤</span>
+    <span>Petnip ❤</span><span>Petnip ❤</span><span>Petnip ❤</span><span>Petnip ❤</span>
+    <span>Petnip ❤</span><span>Petnip ❤</span><span>Petnip ❤</span><span>Petnip ❤</span>
+    <span>Petnip ❤</span><span>Petnip ❤</span><span>Petnip ❤</span><span>Petnip ❤</span>
+    <!-- duplicate for seamless loop -->
+    <span>Petnip ❤</span><span>Petnip ❤</span><span>Petnip ❤</span><span>Petnip ❤</span>
+    <span>Petnip ❤</span><span>Petnip ❤</span><span>Petnip ❤</span><span>Petnip ❤</span>
+    <span>Petnip ❤</span><span>Petnip ❤</span><span>Petnip ❤</span><span>Petnip ❤</span>
+    <span>Petnip ❤</span><span>Petnip ❤</span><span>Petnip ❤</span><span>Petnip ❤</span>
+    <span>Petnip ❤</span><span>Petnip ❤</span><span>Petnip ❤</span><span>Petnip ❤</span>
+  </div>
+</div>
+<div class="ticker-wrap" style="margin-top:2px;">
+  <div class="ticker-inner2">
+    <span>Petnip ❤</span><span>Petnip ❤</span><span>Petnip ❤</span><span>Petnip ❤</span>
+    <span>Petnip ❤</span><span>Petnip ❤</span><span>Petnip ❤</span><span>Petnip ❤</span>
+    <span>Petnip ❤</span><span>Petnip ❤</span><span>Petnip ❤</span><span>Petnip ❤</span>
+    <span>Petnip ❤</span><span>Petnip ❤</span><span>Petnip ❤</span><span>Petnip ❤</span>
+    <span>Petnip ❤</span><span>Petnip ❤</span><span>Petnip ❤</span><span>Petnip ❤</span>
+    <span>Petnip ❤</span><span>Petnip ❤</span><span>Petnip ❤</span><span>Petnip ❤</span>
+    <span>Petnip ❤</span><span>Petnip ❤</span><span>Petnip ❤</span><span>Petnip ❤</span>
+    <span>Petnip ❤</span><span>Petnip ❤</span><span>Petnip ❤</span><span>Petnip ❤</span>
+    <span>Petnip ❤</span><span>Petnip ❤</span><span>Petnip ❤</span><span>Petnip ❤</span>
+    <span>Petnip ❤</span><span>Petnip ❤</span><span>Petnip ❤</span><span>Petnip ❤</span>
+  </div>
+</div>
+
+<!-- ===================== REVIEWS ===================== -->
+<section class="reviews-section">
+  <h2>Leia nossos reviews,<br>e adote com mais confiança!</h2>
+  <div class="reviews-meta">
+    <span>4.8/5</span>
+    <span style="color:var(--star-orange);">★</span>
+    <span>— Baseado em 52.10 reviews</span>
+  </div>
+
+  <div style="position:relative; padding: 0 60px;">
+    <span class="paw-deco-left">🐾</span>
+    <span class="paw-deco-right">🐾</span>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">
+        Como não posso ter pets no meu apartamento, a opção de apadrinhamento da Petnip foi
+        perfeita. Consigo ajudar financeiramente um cãozinho de abrigo e acompanhar a rotina dele
+        pelo app. Uma iniciativa linda!
+      </p>
+      <div class="review-author">
+        <strong>Camila Souza</strong>
+        <span>App Store</span>
+      </div>
+    </div>
+    <div class="review-dots">
+      <span class="active"></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PARTNERS ===================== -->
+<section class="partners-section">
+  <h2>Nossos parceiros</h2>
+  <p>Conheça os parceiros que estão ao nosso lado, assumindo o compromisso com a causa animal.</p>
+  <img
+    class="partners-img"
+    src="https://raw.githubusercontent.com/nckmacdodmd-gif/petnip/9a65d705384f7bb5cd7277be9193b28173609aa5/Imagens/Parcerias.png"
+    alt="Logos dos parceiros"
+    onerror="this.src='/mnt/user-data/uploads/Parcerias.png'"
+  />
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer>
+  <div class="footer-top">
+    <!-- Brand -->
+    <div class="footer-brand">
+      <span class="footer-logo-text">Petnip</span>
+      <span class="footer-social-label">Nos siga nas redes sociais:</span>
+      <div class="footer-social">
+        <a href="#" class="social-icon" aria-label="Facebook">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" stroke="#f7549a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <a href="#" class="social-icon" aria-label="TikTok">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" stroke="#f7549a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <a href="#" class="social-icon" aria-label="Twitter/X">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 4l16 16M4 20L20 4" stroke="#f7549a" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </a>
+        <a href="#" class="social-icon" aria-label="Instagram">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke="#f7549a" stroke-width="2"/>
+            <circle cx="12" cy="12" r="4" stroke="#f7549a" stroke-width="2"/>
+            <circle cx="17.5" cy="6.5" r="1" fill="#f7549a"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Sitemap -->
+    <div class="footer-nav">
+      <h4>Mapa do site</h4>
+      <a href="#">Home</a>
+      <a href="#">Sobre nós</a>
+      <a href="#">Aplicativo</a>
+      <a href="#">Planos</a>
+      <a href="#">Contato</a>
+    </div>
+
+    <!-- Newsletter -->
+    <div class="footer-newsletter">
+      <h4>Newsletter</h4>
+      <input class="newsletter-input" type="email" placeholder="Digite seu e-mail" />
+      <button class="newsletter-btn">Enviar</button>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <a href="#">Privacidade</a>
+    <span style="opacity:.4;">|</span>
+    <a href="#">Gerencie seus dados</a>
+    <span style="opacity:.4;">|</span>
+    <a href="#">Gerencie seus cookies</a>
+  </div>
+</footer>
+
+</body>
+</html>
