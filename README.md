@@ -6,7 +6,7 @@ Para cada animal em busca de um lar, existe um coração pronto para amar e, por
 
 -----------------------------------------------------------
 
-## Entregas
+## Entregas: Disciplina de Criação de Websites
 
 Planejamento de Projeto (P1) - https://drive.google.com/file/d/1TzNHSxPmaozYSEptg-tKpld7jmknGZR5/view?usp=sharing
 
