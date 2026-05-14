@@ -3,958 +3,372 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Petnip – Adoção & Apadrinhamento</title>
+  <meta name="description" content="Petnip — Plataforma de adoção e apadrinhamento de animais. Conectamos corações dispostos a ajudar com animais que precisam de um lar." />
+  <meta name="keywords" content="adoção, pets, apadrinhamento, animais, ONG, cães, gatos, Petnip" />
+  <meta name="author" content="Petnip" />
+  <meta name="robots" content="index, follow" />
+
+  <!-- Open Graph / Social -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://petnip.com.br/" />
+  <meta property="og:title" content="Petnip — Adoção & Apadrinhamento" />
+  <meta property="og:description" content="Para cada animal em busca de um lar, existe um coração pronto para amar. Encontre seu novo melhor amigo!" />
+  <meta property="og:image" content="https://petnip.com.br/assets/og-image.jpg" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Petnip — Adoção & Apadrinhamento" />
+  <meta name="twitter:description" content="Para cada animal em busca de um lar, existe um coração pronto para amar." />
+
+  <title>Petnip — Adoção & Apadrinhamento de Pets</title>
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://petnip.com.br/" />
+
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
 
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Petnip",
+    "url": "https://petnip.com.br",
+    "description": "Plataforma digital para adoção e apadrinhamento de animais em situação de vulnerabilidade.",
+    "sameAs": [
+      "https://facebook.com/petnip",
+      "https://instagram.com/petnip"
+    ]
+  }
+  </script>
 
-    :root {
-      --roxo:    #552cb7;
-      --rosa:    #fb7da8;
-      --amarelo: #ffc567;
-      --azul:    #058cd7;
-      --verde:   #00995e;
-      --vermelho:#fd5a46;
-      --offwhite:#f5f5f5;
-      --preto:   #000000;
-      --branco:  #ffffff;
-    }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: var(--offwhite);
-      color: var(--preto);
-      overflow-x: hidden;
-    }
-
-    h1, h2, h3, h4, h5 { font-family: 'Nunito', sans-serif; }
-
-    /* ─── NAV ─────────────────────────────────────────── */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      background: var(--branco);
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0 6vw;
-      height: 64px;
-      box-shadow: 0 2px 12px rgba(0,0,0,.07);
-    }
-
-    .nav-logo {
-      font-family: 'Nunito', sans-serif;
-      font-size: 1.7rem; font-weight: 900;
-      color: var(--verde);
-      letter-spacing: -1px;
-      display: flex; align-items: center; gap: 6px;
-      text-decoration: none;
-    }
-    .nav-logo span { color: var(--rosa); }
-
-    .nav-links {
-      display: flex; gap: 2.2rem; list-style: none;
-    }
-    .nav-links a {
-      text-decoration: none;
-      font-size: .88rem; font-weight: 500;
-      color: #333;
-      transition: color .2s;
-    }
-    .nav-links a:hover { color: var(--verde); }
-
-    .nav-cta {
-      background: var(--verde); color: var(--branco);
-      border: none; padding: .5rem 1.3rem;
-      border-radius: 50px; cursor: pointer;
-      font-family: 'Poppins', sans-serif;
-      font-size: .85rem; font-weight: 600;
-      transition: background .2s, transform .15s;
-      text-decoration: none;
-    }
-    .nav-cta:hover { background: var(--roxo); transform: scale(1.04); }
-
-    /* ─── HERO ────────────────────────────────────────── */
-    .hero {
-      min-height: 100vh;
-      padding: 110px 6vw 60px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2rem;
-      align-items: center;
-      background: var(--offwhite);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero::before {
-      content: '';
-      position: absolute;
-      right: -120px; top: -80px;
-      width: 700px; height: 700px;
-      background: radial-gradient(circle, var(--rosa) 0%, transparent 70%);
-      opacity: .18;
-      border-radius: 50%;
-      pointer-events: none;
-    }
-
-    .hero-text { position: relative; z-index: 2; }
-
-    .hero-tag {
-      display: inline-block;
-      background: var(--amarelo);
-      color: var(--preto);
-      font-size: .75rem; font-weight: 700;
-      letter-spacing: .08em; text-transform: uppercase;
-      padding: .3rem .9rem; border-radius: 50px;
-      margin-bottom: 1.2rem;
-    }
-
-    .hero-text h1 {
-      font-size: clamp(2.4rem, 4.5vw, 3.6rem);
-      font-weight: 900;
-      line-height: 1.12;
-      color: var(--preto);
-      margin-bottom: 1.2rem;
-    }
-    .hero-text h1 em {
-      font-style: normal;
-      color: var(--verde);
-    }
-    .hero-text h1 .accent { color: var(--rosa); }
-
-    .hero-text p {
-      font-size: 1.05rem; font-weight: 400;
-      line-height: 1.7;
-      color: #444;
-      max-width: 480px;
-      margin-bottom: 2rem;
-    }
-
-    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
-
-    .btn-primary {
-      background: var(--verde); color: var(--branco);
-      padding: .75rem 1.8rem; border-radius: 50px;
-      font-size: .95rem; font-weight: 700;
-      font-family: 'Poppins', sans-serif;
-      text-decoration: none; border: none; cursor: pointer;
-      transition: background .2s, transform .15s, box-shadow .2s;
-      box-shadow: 0 4px 18px rgba(0,153,94,.25);
-    }
-    .btn-primary:hover { background: var(--roxo); transform: translateY(-2px); box-shadow: 0 6px 22px rgba(85,44,183,.3); }
-
-    .btn-outline {
-      background: transparent;
-      color: var(--rosa);
-      padding: .75rem 1.8rem; border-radius: 50px;
-      font-size: .95rem; font-weight: 700;
-      font-family: 'Poppins', sans-serif;
-      text-decoration: none; border: 2.5px solid var(--rosa); cursor: pointer;
-      transition: background .2s, color .2s, transform .15s;
-    }
-    .btn-outline:hover { background: var(--rosa); color: var(--branco); transform: translateY(-2px); }
-
-    .hero-visual {
-      position: relative; z-index: 2;
-      display: flex; justify-content: center; align-items: center;
-    }
-
-    .hero-blob {
-      position: relative;
-      width: clamp(300px, 42vw, 520px);
-      aspect-ratio: 1;
-    }
-
-    .blob-bg {
-      position: absolute; inset: 0;
-      background: var(--rosa);
-      border-radius: 60% 40% 55% 45% / 50% 60% 40% 50%;
-      animation: morphBlob 7s ease-in-out infinite;
-    }
-
-    @keyframes morphBlob {
-      0%,100% { border-radius: 60% 40% 55% 45% / 50% 60% 40% 50%; }
-      33%      { border-radius: 40% 60% 45% 55% / 60% 40% 55% 45%; }
-      66%      { border-radius: 55% 45% 40% 60% / 45% 55% 50% 50%; }
-    }
-
-    .blob-img {
-      position: absolute;
-      inset: 6%;
-      border-radius: inherit;
-      object-fit: cover;
-      width: 88%; height: 88%;
-      top: 6%; left: 6%;
-    }
-
-    .hero-badge {
-      position: absolute;
-      bottom: 8%; right: -4%;
-      background: var(--branco);
-      border-radius: 16px;
-      padding: .8rem 1.1rem;
-      box-shadow: 0 8px 30px rgba(0,0,0,.12);
-      display: flex; align-items: center; gap: .7rem;
-      animation: float 3s ease-in-out infinite;
-    }
-    .hero-badge .badge-icon { font-size: 1.6rem; }
-    .hero-badge .badge-text { font-size: .78rem; font-weight: 600; color: #333; line-height: 1.3; }
-    .hero-badge .badge-text strong { color: var(--verde); font-size: .9rem; }
-
-    @keyframes float {
-      0%,100% { transform: translateY(0); }
-      50%      { transform: translateY(-8px); }
-    }
-
-    .hero-badge2 {
-      position: absolute;
-      top: 10%; left: -6%;
-      background: var(--amarelo);
-      border-radius: 50px;
-      padding: .6rem 1rem;
-      font-size: .8rem; font-weight: 700; color: var(--preto);
-      box-shadow: 0 4px 14px rgba(0,0,0,.1);
-      animation: float 4s ease-in-out infinite reverse;
-    }
-
-    /* ─── TICKER ──────────────────────────────────────── */
-    .ticker {
-      background: var(--verde);
-      padding: .7rem 0;
-      overflow: hidden;
-      white-space: nowrap;
-    }
-    .ticker-inner {
-      display: inline-flex; gap: 2rem;
-      animation: ticker 18s linear infinite;
-    }
-    .ticker-inner span {
-      font-family: 'Nunito', sans-serif;
-      font-weight: 800; font-size: .95rem;
-      color: var(--branco); letter-spacing: .04em;
-    }
-    .ticker-inner span.heart { color: var(--amarelo); }
-    @keyframes ticker {
-      from { transform: translateX(0); }
-      to   { transform: translateX(-50%); }
-    }
-
-    /* ─── ABOUT ───────────────────────────────────────── */
-    .about {
-      padding: 100px 6vw;
-      background: var(--branco);
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: center;
-    }
-
-    .about-photos {
-      position: relative;
-      height: 420px;
-    }
-
-    .polaroid {
-      position: absolute;
-      background: var(--branco);
-      padding: 10px 10px 36px;
-      box-shadow: 0 10px 40px rgba(0,0,0,.13);
-      border-radius: 4px;
-    }
-    .polaroid img {
-      width: 200px; height: 180px;
-      object-fit: cover; display: block;
-      border-radius: 2px;
-    }
-    .polaroid .caption {
-      font-family: 'Nunito', sans-serif;
-      font-size: .8rem; font-weight: 700;
-      text-align: center; margin-top: 8px;
-      color: #555;
-    }
-    .polaroid:nth-child(1) { top: 20px; left: 30px; transform: rotate(-4deg); z-index: 2; }
-    .polaroid:nth-child(2) { top: 80px; left: 200px; transform: rotate(5deg); z-index: 1; }
-    .polaroid:nth-child(3) { top: 220px; left: 80px; transform: rotate(-2deg); z-index: 3; }
-
-    .star-deco {
-      position: absolute;
-      font-size: 1.8rem;
-      animation: spinStar 6s linear infinite;
-    }
-    @keyframes spinStar { to { transform: rotate(360deg); } }
-
-    .about-text h2 {
-      font-size: clamp(2rem, 3.5vw, 2.8rem);
-      font-weight: 900; line-height: 1.15;
-      margin-bottom: 1rem;
-      color: var(--preto);
-    }
-    .about-text h2 span { color: var(--rosa); }
-
-    .about-text p {
-      font-size: .97rem; line-height: 1.75;
-      color: #555; margin-bottom: 1rem;
-    }
-    .about-text p strong { color: var(--preto); font-weight: 600; }
-
-    .feature-pills {
-      display: flex; flex-wrap: wrap; gap: .6rem;
-      margin: 1.5rem 0;
-    }
-    .pill {
-      display: flex; align-items: center; gap: .5rem;
-      padding: .45rem 1rem;
-      border-radius: 50px;
-      font-size: .82rem; font-weight: 600;
-      font-family: 'Poppins', sans-serif;
-    }
-    .pill-verde  { background: #e6f7f0; color: var(--verde); }
-    .pill-roxo   { background: #ede8fb; color: var(--roxo); }
-    .pill-rosa   { background: #fde8ef; color: #d4507a; }
-    .pill-azul   { background: #e3f3fc; color: var(--azul); }
-
-    /* ─── HOW IT WORKS ────────────────────────────────── */
-    .how {
-      padding: 100px 6vw;
-      background: var(--offwhite);
-      text-align: center;
-    }
-
-    .section-label {
-      display: inline-block;
-      background: var(--rosa);
-      color: var(--branco);
-      font-size: .73rem; font-weight: 700;
-      letter-spacing: .1em; text-transform: uppercase;
-      padding: .3rem 1rem; border-radius: 50px;
-      margin-bottom: 1rem;
-    }
-
-    .how h2 {
-      font-size: clamp(1.8rem, 3vw, 2.5rem);
-      font-weight: 900; margin-bottom: .6rem;
-    }
-    .how > p {
-      font-size: .95rem; color: #666;
-      max-width: 560px; margin: 0 auto 3.5rem;
-      line-height: 1.7;
-    }
-
-    .steps {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .step-card {
-      background: var(--branco);
-      border-radius: 20px;
-      padding: 2.2rem 1.6rem;
-      position: relative;
-      transition: transform .25s, box-shadow .25s;
-      text-align: left;
-    }
-    .step-card:hover { transform: translateY(-6px); box-shadow: 0 18px 50px rgba(0,0,0,.1); }
-
-    .step-num {
-      font-family: 'Nunito', sans-serif;
-      font-size: 3rem; font-weight: 900;
-      line-height: 1;
-      margin-bottom: .6rem;
-    }
-    .step-card:nth-child(1) .step-num { color: var(--rosa); }
-    .step-card:nth-child(2) .step-num { color: var(--roxo); }
-    .step-card:nth-child(3) .step-num { color: var(--verde); }
-    .step-card:nth-child(4) .step-num { color: var(--amarelo); }
-
-    .step-card h3 { font-size: 1.1rem; font-weight: 800; margin-bottom: .5rem; }
-    .step-card p  { font-size: .85rem; color: #666; line-height: 1.65; }
-
-    .step-icon {
-      position: absolute; top: 1.4rem; right: 1.4rem;
-      font-size: 1.6rem;
-    }
-
-    /* ─── REVIEWS ─────────────────────────────────────── */
-    .reviews {
-      padding: 100px 6vw;
-      background: var(--branco);
-    }
-
-    .reviews-header { margin-bottom: 2.5rem; }
-    .reviews-header h2 {
-      font-size: clamp(1.8rem, 3vw, 2.4rem);
-      font-weight: 900; margin-bottom: .4rem;
-    }
-    .reviews-header h2 span { color: var(--verde); }
-
-    .rating-row {
-      display: flex; align-items: center; gap: .8rem;
-      font-size: .95rem; color: #555;
-    }
-    .stars { font-size: 1.1rem; }
-    .rating-num { font-weight: 700; color: var(--preto); font-size: 1rem; }
-
-    .reviews-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .review-card {
-      background: var(--offwhite);
-      border-radius: 20px;
-      padding: 1.8rem;
-      position: relative;
-      transition: transform .25s;
-    }
-    .review-card:hover { transform: translateY(-4px); }
-    .review-card .quote {
-      font-size: 2.5rem;
-      color: var(--rosa);
-      font-family: 'Nunito', sans-serif;
-      line-height: 1;
-      margin-bottom: .3rem;
-    }
-    .review-card .stars { margin-bottom: .9rem; }
-    .review-card p { font-size: .9rem; color: #444; line-height: 1.7; margin-bottom: 1.2rem; }
-    .reviewer { display: flex; align-items: center; gap: .7rem; }
-    .reviewer-avatar {
-      width: 40px; height: 40px; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-weight: 800; font-size: 1rem; color: var(--branco);
-    }
-    .reviewer-info .name { font-weight: 700; font-size: .88rem; }
-    .reviewer-info .source { font-size: .78rem; color: #888; }
-
-    /* ─── SPONSORS ────────────────────────────────────── */
-    .sponsors {
-      padding: 80px 6vw;
-      background: var(--offwhite);
-    }
-    .sponsors h2 { font-size: 1.9rem; font-weight: 900; margin-bottom: .4rem; color: var(--verde); }
-    .sponsors > p { font-size: .9rem; color: #666; margin-bottom: 2.5rem; }
-
-    .sponsors-grid {
-      display: flex; flex-wrap: wrap; gap: 1rem; align-items: center;
-    }
-    .sponsor-chip {
-      background: var(--branco);
-      border-radius: 50px;
-      padding: .7rem 1.6rem;
-      font-family: 'Nunito', sans-serif;
-      font-size: .9rem; font-weight: 800;
-      color: #333;
-      box-shadow: 0 2px 10px rgba(0,0,0,.06);
-      transition: transform .2s, box-shadow .2s;
-    }
-    .sponsor-chip:hover { transform: scale(1.04); box-shadow: 0 4px 18px rgba(0,0,0,.1); }
-
-    /* ─── CTA BANNER ──────────────────────────────────── */
-    .cta-banner {
-      margin: 0 6vw 80px;
-      background: var(--roxo);
-      border-radius: 28px;
-      padding: 70px 8%;
-      display: grid;
-      grid-template-columns: 1fr auto;
-      align-items: center;
-      gap: 2rem;
-      position: relative;
-      overflow: hidden;
-    }
-    .cta-banner::before {
-      content: '';
-      position: absolute; right: -80px; top: -80px;
-      width: 340px; height: 340px;
-      background: var(--rosa);
-      border-radius: 50%;
-      opacity: .18;
-    }
-    .cta-banner::after {
-      content: '🐾';
-      position: absolute; right: 14%; bottom: 20px;
-      font-size: 5rem; opacity: .12;
-    }
-
-    .cta-banner h2 {
-      font-size: clamp(1.7rem, 3vw, 2.4rem);
-      font-weight: 900; color: var(--branco);
-      margin-bottom: .6rem;
-    }
-    .cta-banner p { font-size: .95rem; color: rgba(255,255,255,.8); line-height: 1.65; }
-
-    .btn-yellow {
-      background: var(--amarelo);
-      color: var(--preto);
-      padding: .9rem 2rem; border-radius: 50px;
-      font-size: 1rem; font-weight: 800;
-      font-family: 'Nunito', sans-serif;
-      text-decoration: none; border: none; cursor: pointer;
-      white-space: nowrap;
-      transition: transform .2s, box-shadow .2s;
-      box-shadow: 0 4px 18px rgba(255,197,103,.4);
-    }
-    .btn-yellow:hover { transform: scale(1.05); box-shadow: 0 6px 26px rgba(255,197,103,.55); }
-
-    /* ─── FOOTER ──────────────────────────────────────── */
-    footer {
-      background: var(--rosa);
-      padding: 60px 6vw 30px;
-    }
-
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 1.5fr 1fr 1fr 1.8fr;
-      gap: 3rem;
-      margin-bottom: 40px;
-    }
-
-    .footer-brand .logo {
-      font-family: 'Nunito', sans-serif;
-      font-size: 1.8rem; font-weight: 900;
-      color: var(--branco); letter-spacing: -1px;
-      margin-bottom: .5rem;
-    }
-    .footer-brand .logo span { color: var(--amarelo); }
-    .footer-brand p { font-size: .85rem; color: rgba(255,255,255,.85); line-height: 1.6; margin-bottom: 1rem; }
-
-    .social-icons { display: flex; gap: .7rem; }
-    .soc {
-      width: 36px; height: 36px; border-radius: 50%;
-      background: rgba(255,255,255,.25);
-      display: flex; align-items: center; justify-content: center;
-      color: var(--branco); font-size: 1rem;
-      text-decoration: none;
-      transition: background .2s, transform .15s;
-    }
-    .soc:hover { background: var(--branco); color: var(--rosa); transform: scale(1.1); }
-
-    .footer-col h4 {
-      font-family: 'Nunito', sans-serif;
-      font-size: 1rem; font-weight: 800;
-      color: var(--branco); margin-bottom: 1rem;
-    }
-    .footer-col ul { list-style: none; }
-    .footer-col ul li { margin-bottom: .5rem; }
-    .footer-col ul li a {
-      font-size: .85rem; color: rgba(255,255,255,.8);
-      text-decoration: none; transition: color .2s;
-    }
-    .footer-col ul li a:hover { color: var(--branco); }
-
-    .newsletter-form { display: flex; flex-direction: column; gap: .6rem; }
-    .newsletter-form input {
-      border: none; outline: none;
-      padding: .65rem 1rem;
-      border-radius: 50px;
-      font-family: 'Poppins', sans-serif;
-      font-size: .85rem;
-    }
-    .newsletter-form button {
-      background: var(--verde); color: var(--branco);
-      border: none; padding: .65rem 1rem;
-      border-radius: 50px; cursor: pointer;
-      font-family: 'Nunito', sans-serif;
-      font-weight: 700; font-size: .9rem;
-      transition: background .2s;
-    }
-    .newsletter-form button:hover { background: var(--roxo); }
-
-    .footer-bottom {
-      border-top: 1px solid rgba(255,255,255,.25);
-      padding-top: 20px;
-      display: flex; justify-content: space-between; align-items: center;
-      flex-wrap: wrap; gap: .5rem;
-    }
-    .footer-bottom p { font-size: .78rem; color: rgba(255,255,255,.7); }
-    .footer-bottom a { color: rgba(255,255,255,.85); text-decoration: none; }
-    .footer-bottom a:hover { color: var(--branco); }
-
-    /* ─── ANIMATIONS ──────────────────────────────────── */
-    .fade-in {
-      opacity: 0;
-      transform: translateY(28px);
-      transition: opacity .65s ease, transform .65s ease;
-    }
-    .fade-in.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* ─── RESPONSIVE ──────────────────────────────────── */
-    @media (max-width: 900px) {
-      .hero, .about { grid-template-columns: 1fr; }
-      .hero-visual { order: -1; }
-      .hero-blob { width: clamp(260px, 70vw, 380px); }
-      .about-photos { height: 300px; }
-      .polaroid img { width: 150px; height: 130px; }
-      .footer-grid { grid-template-columns: 1fr 1fr; }
-      .cta-banner { grid-template-columns: 1fr; }
-    }
-
-    @media (max-width: 600px) {
-      .nav-links { display: none; }
-      .footer-grid { grid-template-columns: 1fr; }
-    }
-  </style>
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
 
-  <!-- NAV -->
-  <nav>
-    <a href="#" class="nav-logo">🐾 Petn<span>i</span>p</a>
-    <ul class="nav-links">
-      <li><a href="#sobre">Sobre nós</a></li>
-      <li><a href="#como">Como funciona</a></li>
-      <li><a href="#reviews">Reviews</a></li>
-      <li><a href="#parceiros">Parceiros</a></li>
-    </ul>
-    <a href="#" class="nav-cta">Baixar app</a>
-  </nav>
+  <!-- Skip to main content (acessibilidade) -->
+  <a href="#main-content" class="skip-link">Ir para o conteúdo principal</a>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-text fade-in">
-      <span class="hero-tag">🐶 Adoção & Apadrinhamento</span>
-      <h1>Para cada animal,<br/>existe um <em>coração</em><br/>pronto para<br/><span class="accent">amar.</span></h1>
-      <p>Por meio da Petnip, você encontra seu novo melhor amigo ou transforma a vida de um animal em situação de vulnerabilidade — seja adotando ou apadrinhando.</p>
-      <div class="hero-btns">
-        <a href="#" class="btn-primary">📱 Baixar o app</a>
-        <a href="#sobre" class="btn-outline">Nos siga nas redes</a>
-      </div>
-    </div>
+  <!-- ========== NAVBAR ========== -->
+  <header class="navbar" role="banner">
+    <div class="container navbar__inner">
+      <a href="#" class="navbar__logo" aria-label="Petnip — Página inicial">
+        <span class="logo-pet">Pet</span><span class="logo-nip">nip</span>
+        <small class="logo-tagline">Adoção &amp; Apadrinhamento</small>
+      </a>
 
-    <div class="hero-visual fade-in" style="transition-delay:.2s">
-      <div class="hero-blob">
-        <div class="blob-bg"></div>
-        <!-- Cat with sunglasses placeholder -->
-        <svg class="blob-img" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
-          <rect width="400" height="400" fill="#ffb3cb" rx="50%"/>
-          <!-- Simplified cat illustration -->
-          <ellipse cx="200" cy="220" rx="100" ry="95" fill="#9b7e5c"/>
-          <!-- ears -->
-          <polygon points="130,145 110,100 165,140" fill="#9b7e5c"/>
-          <polygon points="270,145 290,100 235,140" fill="#9b7e5c"/>
-          <polygon points="133,143 118,108 160,140" fill="#f5c0a0"/>
-          <polygon points="267,143 282,108 240,140" fill="#f5c0a0"/>
-          <!-- face -->
-          <ellipse cx="200" cy="215" rx="88" ry="80" fill="#b89168"/>
-          <!-- sunglasses -->
-          <rect x="150" y="185" width="42" height="26" rx="13" fill="#ff6b9d" opacity=".9"/>
-          <rect x="208" y="185" width="42" height="26" rx="13" fill="#ff6b9d" opacity=".9"/>
-          <rect x="192" y="194" width="16" height="5" rx="2" fill="#d4507a"/>
-          <circle cx="171" cy="198" r="8" fill="#fff" opacity=".3"/>
-          <circle cx="229" cy="198" r="8" fill="#fff" opacity=".3"/>
-          <!-- nose -->
-          <ellipse cx="200" cy="230" rx="8" ry="5" fill="#e8a0a0"/>
-          <!-- mouth -->
-          <path d="M192,237 Q200,245 208,237" stroke="#c97070" stroke-width="2" fill="none" stroke-linecap="round"/>
-          <!-- whiskers -->
-          <line x1="155" y1="232" x2="188" y2="228" stroke="#555" stroke-width="1.2"/>
-          <line x1="155" y1="238" x2="188" y2="236" stroke="#555" stroke-width="1.2"/>
-          <line x1="212" y1="228" x2="245" y2="232" stroke="#555" stroke-width="1.2"/>
-          <line x1="212" y1="236" x2="245" y2="238" stroke="#555" stroke-width="1.2"/>
-          <!-- paw -->
-          <ellipse cx="270" cy="290" rx="38" ry="28" fill="#f4e0c8"/>
-          <ellipse cx="256" cy="276" rx="12" ry="10" fill="#f4e0c8"/>
-          <ellipse cx="270" cy="272" rx="12" ry="10" fill="#f4e0c8"/>
-          <ellipse cx="284" cy="276" rx="12" ry="10" fill="#f4e0c8"/>
-        </svg>
-        <div class="hero-badge2">🏠 +1.200 lares encontrados</div>
-        <div class="hero-badge">
-          <span class="badge-icon">🐾</span>
-          <div class="badge-text">
-            <strong>4.8/5 ★</strong><br/>52k reviews
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+      <button class="navbar__hamburger" id="hamburger" aria-label="Abrir menu" aria-expanded="false" aria-controls="nav-menu">
+        <span></span><span></span><span></span>
+      </button>
 
-  <!-- TICKER -->
-  <div class="ticker" aria-hidden="true">
-    <div class="ticker-inner">
-      <span>Petnip</span><span class="heart">♥</span>
-      <span>Petnip</span><span class="heart">♥</span>
-      <span>Petnip</span><span class="heart">♥</span>
-      <span>Petnip</span><span class="heart">♥</span>
-      <span>Petnip</span><span class="heart">♥</span>
-      <span>Petnip</span><span class="heart">♥</span>
-      <span>Petnip</span><span class="heart">♥</span>
-      <span>Petnip</span><span class="heart">♥</span>
-      <span>Petnip</span><span class="heart">♥</span>
-      <span>Petnip</span><span class="heart">♥</span>
-      <span>Petnip</span><span class="heart">♥</span>
-      <span>Petnip</span><span class="heart">♥</span>
-      <span>Petnip</span><span class="heart">♥</span>
-      <span>Petnip</span><span class="heart">♥</span>
-      <span>Petnip</span><span class="heart">♥</span>
-      <span>Petnip</span><span class="heart">♥</span>
-    </div>
-  </div>
-
-  <!-- ABOUT -->
-  <section class="about" id="sobre">
-    <div class="about-photos fade-in">
-      <!-- Dog polaroid -->
-      <div class="polaroid">
-        <svg width="200" height="180" viewBox="0 0 200 180" xmlns="http://www.w3.org/2000/svg">
-          <rect width="200" height="180" fill="#f8e4c8"/>
-          <ellipse cx="100" cy="120" rx="65" ry="55" fill="#c89060"/>
-          <ellipse cx="100" cy="118" rx="55" ry="48" fill="#d8a070"/>
-          <ellipse cx="78" cy="82" rx="22" ry="30" fill="#c89060" transform="rotate(-10 78 82)"/>
-          <ellipse cx="122" cy="82" rx="22" ry="30" fill="#c89060" transform="rotate(10 122 82)"/>
-          <circle cx="85" cy="110" r="7" fill="#3a2510"/>
-          <circle cx="115" cy="110" r="7" fill="#3a2510"/>
-          <ellipse cx="100" cy="128" rx="12" ry="8" fill="#9c5030"/>
-          <path d="M88,136 Q100,145 112,136" stroke="#7a3018" stroke-width="2" fill="none" stroke-linecap="round"/>
-          <line x1="65" y1="130" x2="86" y2="126" stroke="#888" stroke-width="1.2"/>
-          <line x1="65" y1="136" x2="86" y2="134" stroke="#888" stroke-width="1.2"/>
-          <line x1="114" y1="126" x2="135" y2="130" stroke="#888" stroke-width="1.2"/>
-          <line x1="114" y1="134" x2="135" y2="136" stroke="#888" stroke-width="1.2"/>
-        </svg>
-        <div class="caption">Biscuit 🐶</div>
-      </div>
-      <!-- Cat polaroid -->
-      <div class="polaroid">
-        <svg width="200" height="180" viewBox="0 0 200 180" xmlns="http://www.w3.org/2000/svg">
-          <rect width="200" height="180" fill="#c8d8f0"/>
-          <ellipse cx="100" cy="115" rx="62" ry="58" fill="#888"/>
-          <polygon points="68,75 55,45 90,70" fill="#888"/>
-          <polygon points="132,75 145,45 110,70" fill="#888"/>
-          <polygon points="71,73 60,50 88,70" fill="#f0c0c0"/>
-          <polygon points="129,73 140,50 112,70" fill="#f0c0c0"/>
-          <ellipse cx="100" cy="112" rx="54" ry="50" fill="#aaa"/>
-          <ellipse cx="84" cy="105" rx="10" ry="12" fill="#3a3a5c"/>
-          <ellipse cx="116" cy="105" rx="10" ry="12" fill="#3a3a5c"/>
-          <ellipse cx="100" cy="124" rx="8" ry="5" fill="#e8a0a0"/>
-          <path d="M92,131 Q100,139 108,131" stroke="#c07070" stroke-width="2" fill="none" stroke-linecap="round"/>
-          <line x1="60" y1="124" x2="90" y2="120" stroke="#666" stroke-width="1.2"/>
-          <line x1="110" y1="120" x2="140" y2="124" stroke="#666" stroke-width="1.2"/>
-        </svg>
-        <div class="caption">Luna 🐱</div>
-      </div>
-      <!-- Third polaroid slightly behind -->
-      <div class="polaroid">
-        <svg width="200" height="180" viewBox="0 0 200 180" xmlns="http://www.w3.org/2000/svg">
-          <rect width="200" height="180" fill="#d0f0e0"/>
-          <ellipse cx="100" cy="120" rx="60" ry="50" fill="#e8a050"/>
-          <ellipse cx="75" cy="80" rx="20" ry="28" fill="#e8a050" transform="rotate(-8 75 80)"/>
-          <ellipse cx="125" cy="80" rx="20" ry="28" fill="#e8a050" transform="rotate(8 125 80)"/>
-          <ellipse cx="100" cy="115" rx="50" ry="44" fill="#f0b870"/>
-          <circle cx="86" cy="108" r="7" fill="#3a2510"/>
-          <circle cx="114" cy="108" r="7" fill="#3a2510"/>
-          <ellipse cx="100" cy="126" rx="11" ry="7" fill="#c06040"/>
-          <path d="M90,133 Q100,142 110,133" stroke="#9a4020" stroke-width="2" fill="none" stroke-linecap="round"/>
-        </svg>
-        <div class="caption">Mel 🐾</div>
-      </div>
-      <div class="star-deco" style="top:10px;right:20px;font-size:1.4rem;">⭐</div>
-      <div class="star-deco" style="bottom:30px;right:10px;font-size:1.1rem;animation-duration:4s;">✨</div>
-    </div>
-
-    <div class="about-text fade-in" style="transition-delay:.15s">
-      <span class="section-label">Nossa missão</span>
-      <h2>Faça parte<br/>dessa <span>causa!</span></h2>
-      <p>Nosso objetivo é <strong>facilitar e humanizar o processo de adoção e doação de suprimentos para ONGs</strong> que cuidam de animais em situação de vulnerabilidade.</p>
-      <p>A Petnip te conecta a uma comunidade de animais que precisam de um lar — você pode explorar por localização, raça, porte, e muito mais.</p>
-
-      <div class="feature-pills">
-        <span class="pill pill-verde">🏠 Adoção facilitada</span>
-        <span class="pill pill-roxo">🤝 Apadrinhamento</span>
-        <span class="pill pill-rosa">💊 Apoio a ONGs</span>
-        <span class="pill pill-azul">📍 Busca por localização</span>
-      </div>
-
-      <a href="#" class="btn-primary" style="display:inline-block">Saiba mais sobre nós →</a>
-    </div>
-  </section>
-
-  <!-- HOW IT WORKS -->
-  <section class="how" id="como">
-    <span class="section-label">Simples assim</span>
-    <h2>Como funciona a Petnip?</h2>
-    <p>Em poucos passos, você pode mudar a vida de um animal — e a sua própria.</p>
-
-    <div class="steps">
-      <div class="step-card fade-in">
-        <div class="step-num">01</div>
-        <div class="step-icon">📲</div>
-        <h3>Baixe o app</h3>
-        <p>Disponível para iOS e Android. Crie seu perfil em menos de 2 minutos.</p>
-      </div>
-      <div class="step-card fade-in" style="transition-delay:.1s">
-        <div class="step-num">02</div>
-        <div class="step-icon">🔍</div>
-        <h3>Explore os perfis</h3>
-        <p>Filtre por localização, porte, raça e idade. Cada pet tem uma história para contar.</p>
-      </div>
-      <div class="step-card fade-in" style="transition-delay:.2s">
-        <div class="step-num">03</div>
-        <div class="step-icon">❤️</div>
-        <h3>Conecte-se</h3>
-        <p>Entre em contato com a ONG ou protetor responsável diretamente pelo app.</p>
-      </div>
-      <div class="step-card fade-in" style="transition-delay:.3s">
-        <div class="step-num">04</div>
-        <div class="step-icon">🏠</div>
-        <h3>Transforme uma vida</h3>
-        <p>Adote ou apadrinhe — contribua com alimentos, vacinas e cuidados essenciais.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- REVIEWS -->
-  <section class="reviews" id="reviews">
-    <div class="reviews-header fade-in">
-      <h2>Leia nossos reviews,<br/><span>e adote com mais confiança!</span></h2>
-      <div class="rating-row" style="margin-top:.6rem">
-        <span class="stars">⭐⭐⭐⭐⭐</span>
-        <span class="rating-num">4.8/5</span>
-        <span>— Baseado em 52.110 reviews</span>
-      </div>
-    </div>
-
-    <div class="reviews-grid">
-      <div class="review-card fade-in">
-        <div class="quote">"</div>
-        <div class="stars">⭐⭐⭐⭐⭐</div>
-        <p>Como não posso ter pets no meu apartamento, a opção de apadrinhamento da Petnip foi perfeita. Consigo ajudar financeiramente um cãozinho de abrigo e acompanhar a rotina dele pelo app. Uma iniciativa linda!</p>
-        <div class="reviewer">
-          <div class="reviewer-avatar" style="background:var(--rosa)">C</div>
-          <div class="reviewer-info">
-            <div class="name">Camila Souza</div>
-            <div class="source">App Store</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="review-card fade-in" style="transition-delay:.1s">
-        <div class="quote">"</div>
-        <div class="stars">⭐⭐⭐⭐⭐</div>
-        <p>Encontrei minha Mel em menos de uma semana! O app é super intuitivo, consegui filtrar por porte e cidade. A ONG parceira foi incrível e o processo de adoção foi muito tranquilo.</p>
-        <div class="reviewer">
-          <div class="reviewer-avatar" style="background:var(--roxo)">R</div>
-          <div class="reviewer-info">
-            <div class="name">Rafael Mendes</div>
-            <div class="source">Google Play</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="review-card fade-in" style="transition-delay:.2s">
-        <div class="quote">"</div>
-        <div class="stars">⭐⭐⭐⭐⭐</div>
-        <p>Representando nossa ONG na Petnip há 6 meses. As adoções aumentaram 3x e o suporte da plataforma é excepcional. Finalmente uma ferramenta feita pensando nos animais de verdade!</p>
-        <div class="reviewer">
-          <div class="reviewer-avatar" style="background:var(--verde)">A</div>
-          <div class="reviewer-info">
-            <div class="name">Ana Paula Lima</div>
-            <div class="source">ONG Caramelo</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PARTNERS -->
-  <section class="sponsors" id="parceiros">
-    <h2>Nossos parceiros</h2>
-    <p>Conheça as organizações que estão ao nosso lado, assumindo o compromisso com a causa animal.</p>
-    <div class="sponsors-grid">
-      <div class="sponsor-chip">🧡 Instituto Caramelo</div>
-      <div class="sponsor-chip">🐾 COSAP</div>
-      <div class="sponsor-chip">🛡️ AMPARA Animal</div>
-      <div class="sponsor-chip">🌍 UIPA</div>
-      <div class="sponsor-chip">🐕 APAA</div>
-      <div class="sponsor-chip">🐩 Cão Bom</div>
-      <div class="sponsor-chip">💙 ONG Azul</div>
-    </div>
-  </section>
-
-  <!-- CTA BANNER -->
-  <div class="cta-banner fade-in">
-    <div>
-      <h2>Pronto para encontrar seu novo melhor amigo?</h2>
-      <p>Baixe o app agora e junte-se a mais de 120.000 pessoas que já fazem parte desta causa.</p>
-    </div>
-    <a href="#" class="btn-yellow">📱 Baixar o app grátis</a>
-  </div>
-
-  <!-- FOOTER -->
-  <footer>
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <div class="logo">🐾 Petn<span>i</span>p</div>
-        <p>Adoção & Apadrinhamento<br/>Conectando corações desde 2024.</p>
-        <div class="social-icons">
-          <a href="#" class="soc">f</a>
-          <a href="#" class="soc">in</a>
-          <a href="#" class="soc">𝕏</a>
-          <a href="#" class="soc">📸</a>
-        </div>
-      </div>
-
-      <div class="footer-col">
-        <h4>Mapa do site</h4>
+      <nav id="nav-menu" class="navbar__nav" role="navigation" aria-label="Menu principal">
         <ul>
-          <li><a href="#">Home</a></li>
+          <li><a href="#hero" class="nav-link active">Home</a></li>
+          <li><a href="#sobre" class="nav-link">Sobre</a></li>
+          <li><a href="#planos" class="nav-link">Planos</a></li>
+          <li><a href="#app" class="nav-link">Aplicativo</a></li>
+          <li><a href="#contato" class="nav-link">Contato</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content">
+
+    <!-- ========== HERO ========== -->
+    <section id="hero" class="hero" aria-label="Apresentação">
+      <div class="container hero__inner">
+        <div class="hero__text">
+          <h1 class="hero__title">
+            Para cada animal em busca de um lar, existe um coração pronto para amar.
+          </h1>
+          <p class="hero__sub">Por meio da Petnip, você pode encontrar seu novo melhor amigo!</p>
+          <div class="hero__ctas">
+            <a href="#app" class="btn btn--green">Baixe nosso app</a>
+            <a href="#contato" class="btn btn--pink-outline">Nos siga nas redes</a>
+          </div>
+        </div>
+        <div class="hero__visual" aria-hidden="true">
+          <div class="hero__blob"></div>
+          <div class="hero__pet-card">
+            <div class="pet-emoji">🐱</div>
+          </div>
+        </div>
+      </div>
+      <div class="ticker" aria-hidden="true">
+        <div class="ticker__track">
+          <span>Petnip ❤️</span><span>Petnip ❤️</span><span>Petnip ❤️</span><span>Petnip ❤️</span>
+          <span>Petnip ❤️</span><span>Petnip ❤️</span><span>Petnip ❤️</span><span>Petnip ❤️</span>
+          <span>Petnip ❤️</span><span>Petnip ❤️</span><span>Petnip ❤️</span><span>Petnip ❤️</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SOBRE ========== -->
+    <section id="sobre" class="sobre section" aria-label="Sobre a Petnip">
+      <div class="container sobre__inner">
+        <div class="sobre__text fade-in">
+          <h2 class="section-title">Faça parte dessa causa!</h2>
+          <p>
+            Nosso objetivo é <strong>facilitar e humanizar o processo de adoção e doação de suprimentos para ONGs que cuidam de animais</strong> em situação de vulnerabilidade.
+          </p>
+          <p>
+            Buscamos oferecer aos usuários uma plataforma prática e acessível, que conecte corações dispostos a ajudar com causas que realmente precisam de apoio, seja por meio de adoção ou apadrinhamento.
+          </p>
+          <a href="#planos" class="btn btn--purple">Saiba mais sobre nós</a>
+        </div>
+        <div class="sobre__stat fade-in">
+          <div class="stat-card">
+            <span class="stat-number">30M+</span>
+            <p>A Organização Mundial de Saúde (OMS) estima que, no Brasil, cerca de 30 milhões de animais, majoritariamente cães e gatos, estejam em situações de rua. Pensando nisso, a Petnip veio para atuar como um mediador em procedimentos que, muitas vezes, são complexos e burocráticos.</p>
+          </div>
+          <div class="polaroids" aria-hidden="true">
+            <div class="polaroid polaroid--1">🐕</div>
+            <div class="polaroid polaroid--2">🐈</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== PLANOS ========== -->
+    <section id="planos" class="planos section" aria-label="Planos de apadrinhamento">
+      <div class="container">
+        <div class="section-header fade-in">
+          <h2 class="section-title" style="color:var(--pink)">Nossos planos</h2>
+          <p>Conheça os planos de apadrinhamento que oferecemos no nosso aplicativo.<br>
+          Os <strong>valores arrecadados são destinados aos pets</strong> e à manutenção da plataforma.</p>
+        </div>
+        <div class="planos__grid">
+          <article class="plan-card plan-card--green fade-in" aria-label="Plano A">
+            <div class="plan-clip" aria-hidden="true">📎</div>
+            <h3>Plano A</h3>
+            <ul>
+              <li>Certificado digital de padrinho</li>
+              <li>Nome listado no perfil do pet</li>
+              <li>Atualizações por e-mail</li>
+            </ul>
+            <p class="plan-price">R$ 10 / mês</p>
+            <a href="#app" class="btn btn--white">Começar</a>
+          </article>
+          <article class="plan-card plan-card--pink fade-in" aria-label="Plano B">
+            <div class="plan-clip" aria-hidden="true">📎</div>
+            <h3>Plano B</h3>
+            <ul>
+              <li>Tudo do Plano A</li>
+              <li>Relatório mensal com fotos do animal</li>
+            </ul>
+            <p class="plan-price">R$ 30 / mês</p>
+            <a href="#app" class="btn btn--white">Começar</a>
+          </article>
+          <article class="plan-card plan-card--blue fade-in" aria-label="Plano C">
+            <div class="plan-clip" aria-hidden="true">📎</div>
+            <h3>Plano C</h3>
+            <ul>
+              <li>Tudo dos Planos A e B</li>
+              <li>Acompanhamento da saúde do pet (vacinas e check-ups)</li>
+            </ul>
+            <p class="plan-price">R$ 50 / mês</p>
+            <a href="#app" class="btn btn--white">Começar</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== APP ========== -->
+    <section id="app" class="app-section section" aria-label="Aplicativo Petnip">
+      <div class="container app-section__inner">
+        <div class="app-section__text fade-in">
+          <h2 class="section-title" style="color:#fff">Adoção e apadrinhamento de pets!</h2>
+          <p>Encontre seu novo melhor amigo de forma fácil, segura e responsável.</p>
+          <p>No nosso aplicativo, você pode encontrar uma seleção variada de pets, consultar ONGs e serviços veterinários parceiros, ou até mesmo cadastrar um amiguinho para doação. Tudo isso, em um único lugar.</p>
+          <a href="#" class="btn btn--pink" aria-label="Baixar o aplicativo Petnip">Baixe nosso app</a>
+          <p class="app-section__sub">
+            A Petnip te conecta a uma comunidade de animais que precisam de um lar recheado de amor — você pode explorar por localização, raça, porte, e muito mais. E, com nossos planos de apadrinhamento, você também pode contribuir com alimentos, vacinas e cuidados especiais!
+          </p>
+        </div>
+        <div class="app-section__mockup fade-in" aria-hidden="true">
+          <div class="phone-mockup">
+            <div class="phone-screen">
+              <div class="phone-header">
+                <span class="phone-logo">🐾 Petnip</span>
+              </div>
+              <div class="phone-card">
+                <div class="phone-pet-img">🐶</div>
+                <div class="phone-info">
+                  <strong>BOB</strong>
+                  <small>2 anos · Campinzinho, SP</small>
+                </div>
+                <div class="phone-btns">
+                  <button class="phone-btn phone-btn--green" aria-label="Adotar Bob">Adotar</button>
+                  <button class="phone-btn phone-btn--blue" aria-label="Apadrinhar Bob">Apadrinhar</button>
+                </div>
+              </div>
+              <div class="phone-tabs" aria-hidden="true">
+                <span>🏠</span><span>🔍</span><span>💬</span><span>👤</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== REVIEWS ========== -->
+    <section id="reviews" class="reviews section" aria-label="Avaliações dos usuários">
+      <div class="container">
+        <div class="section-header fade-in">
+          <h2 class="section-title" style="color:var(--purple)">Leia nossos reviews,<br>e adote com mais confiança!</h2>
+          <p class="reviews__rating">
+            <span aria-hidden="true">⭐ 4.8/5</span>
+            <span class="sr-only">Avaliação 4.8 de 5 estrelas</span>
+            — Baseado em 52.10 reviews
+          </p>
+        </div>
+        <div class="reviews__slider" role="region" aria-label="Carrossel de avaliações">
+          <div class="reviews__track" id="reviews-track">
+            <article class="review-card" aria-label="Avaliação de Camila Souza">
+              <div class="review-stars" aria-label="5 estrelas">⭐⭐⭐⭐⭐</div>
+              <p>"Como não posso ter pets no meu apartamento, a opção de apadrinhamento da Petnip foi perfeita. Consigo ajudar financeiramente um cãozinho de abrigo e acompanhar a rotina dele pelo app. Uma iniciativa linda!"</p>
+              <footer>
+                <strong>Camila Souza</strong>
+                <small>App Store</small>
+              </footer>
+            </article>
+            <article class="review-card" aria-label="Avaliação de Rafael Lima">
+              <div class="review-stars" aria-label="5 estrelas">⭐⭐⭐⭐⭐</div>
+              <p>"Adotei minha gatinha pela Petnip em menos de uma semana. O processo foi super simples e transparente. Recomendo demais para quem quer dar um lar a um bichinho."</p>
+              <footer>
+                <strong>Rafael Lima</strong>
+                <small>Google Play</small>
+              </footer>
+            </article>
+            <article class="review-card" aria-label="Avaliação de Fernanda Alves">
+              <div class="review-stars" aria-label="5 estrelas">⭐⭐⭐⭐⭐</div>
+              <p>"Plataforma incrível! Consigo acompanhar as vacinas e check-ups do meu afilhado pelo app. Sensação de estar fazendo a diferença na vida de um animal é única."</p>
+              <footer>
+                <strong>Fernanda Alves</strong>
+                <small>App Store</small>
+              </footer>
+            </article>
+          </div>
+          <div class="reviews__dots" role="tablist" aria-label="Navegar entre avaliações">
+            <button role="tab" aria-selected="true" aria-label="Avaliação 1" class="dot dot--active" data-index="0"></button>
+            <button role="tab" aria-selected="false" aria-label="Avaliação 2" class="dot" data-index="1"></button>
+            <button role="tab" aria-selected="false" aria-label="Avaliação 3" class="dot" data-index="2"></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== PARCEIROS ========== -->
+    <section id="parceiros" class="parceiros section" aria-label="Nossos parceiros">
+      <div class="container">
+        <div class="section-header fade-in">
+          <h2 class="section-title" style="color:var(--green)">Nossos parceiros</h2>
+          <p>Conheça os parceiros que estão ao nosso lado, assumindo o compromisso com a causa animal.</p>
+        </div>
+        <div class="parceiros__grid fade-in" role="list" aria-label="Lista de parceiros">
+          <div class="parceiro" role="listitem">🐾 Instituto Caramelo</div>
+          <div class="parceiro" role="listitem">🏛️ COSAP</div>
+          <div class="parceiro" role="listitem">🅰️ AMPARA Animal</div>
+          <div class="parceiro" role="listitem">🌍 UIPA</div>
+          <div class="parceiro" role="listitem">🐕 APA</div>
+          <div class="parceiro" role="listitem">🦮 Cão Bom</div>
+          <div class="parceiro" role="listitem">🔵 ONG Azul</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== CONTATO / NEWSLETTER ========== -->
+    <section id="contato" class="contato section" aria-label="Contato e newsletter">
+      <div class="container contato__inner">
+        <div class="contato__text fade-in">
+          <h2 class="section-title" style="color:#fff">Fique por dentro das novidades!</h2>
+          <p>Assine nossa newsletter e receba histórias de adoção, dicas e muito mais.</p>
+        </div>
+        <form class="newsletter-form fade-in" aria-label="Formulário de newsletter" novalidate id="newsletter-form">
+          <label for="email-input" class="sr-only">Seu e-mail</label>
+          <input
+            type="email"
+            id="email-input"
+            name="email"
+            placeholder="Digite seu e-mail"
+            autocomplete="email"
+            required
+            aria-required="true"
+            aria-describedby="email-error"
+          />
+          <span id="email-error" class="form-error" role="alert" aria-live="polite"></span>
+          <button type="submit" class="btn btn--pink">Enviar</button>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer" role="contentinfo">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <a href="#" class="navbar__logo footer__logo" aria-label="Petnip — Voltar ao topo">
+          <span class="logo-pet">Pet</span><span class="logo-nip">nip</span>
+        </a>
+        <p>Nos siga nas redes sociais:</p>
+        <div class="footer__socials">
+          <a href="#" class="social-btn" aria-label="Facebook da Petnip">f</a>
+          <a href="#" class="social-btn" aria-label="TikTok da Petnip">t</a>
+          <a href="#" class="social-btn" aria-label="Twitter / X da Petnip">𝕏</a>
+          <a href="#" class="social-btn" aria-label="Instagram da Petnip">◎</a>
+        </div>
+      </div>
+
+      <nav class="footer__nav" aria-label="Mapa do site">
+        <h3>Mapa do site</h3>
+        <ul>
+          <li><a href="#hero">Home</a></li>
           <li><a href="#sobre">Sobre nós</a></li>
-          <li><a href="#">Aplicativo</a></li>
-          <li><a href="#">Planos</a></li>
-          <li><a href="#">Contato</a></li>
+          <li><a href="#app">Aplicativo</a></li>
+          <li><a href="#planos">Planos</a></li>
+          <li><a href="#contato">Contato</a></li>
         </ul>
-      </div>
+      </nav>
 
-      <div class="footer-col">
-        <h4>Contato</h4>
-        <ul>
-          <li><a href="#">oi@petnip.com.br</a></li>
-          <li><a href="#">FAQ</a></li>
-          <li><a href="#">Suporte</a></li>
-          <li><a href="#">Para ONGs</a></li>
-        </ul>
-      </div>
-
-      <div class="footer-col">
-        <h4>Newsletter</h4>
-        <div class="newsletter-form">
-          <input type="email" placeholder="Digite seu e-mail" />
-          <button type="button">Enviar 🐾</button>
-        </div>
+      <div class="footer__newsletter">
+        <h3>Newsletter</h3>
+        <form aria-label="Newsletter rodapé" novalidate id="footer-newsletter-form">
+          <label for="footer-email" class="sr-only">Seu e-mail</label>
+          <input type="email" id="footer-email" name="email" placeholder="Digite seu e-mail" required aria-required="true" />
+          <button type="submit" class="btn btn--pink">Enviar</button>
+        </form>
       </div>
     </div>
 
-    <div class="footer-bottom">
-      <p>© 2024 Petnip. Feito com ♥ para os animais.</p>
-      <p>
-        <a href="#">Privacidade</a> &nbsp;|&nbsp;
-        <a href="#">Gerenciar seus dados</a> &nbsp;|&nbsp;
-        <a href="#">Cookies</a>
-      </p>
+    <!-- LGPD Banner -->
+    <div class="footer__lgpd">
+      <div class="container">
+        <a href="#privacidade">Privacidade</a>
+        <span>|</span>
+        <a href="#dados">Gerencie seus dados</a>
+        <span>|</span>
+        <a href="#cookies">Gerencie seus cookies</a>
+      </div>
     </div>
   </footer>
 
-  <script>
-    // Intersection Observer for fade-in animations
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('visible');
-          observer.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.12 });
+  <!-- ========== LGPD COOKIE BANNER ========== -->
+  <div id="cookie-banner" class="cookie-banner" role="dialog" aria-modal="true" aria-label="Aviso de cookies" aria-live="polite">
+    <p>
+      🍪 Usamos cookies para melhorar sua experiência. Ao continuar navegando, você concorda com nossa
+      <a href="#privacidade">Política de Privacidade</a> e o uso de cookies conforme a <strong>LGPD</strong>.
+    </p>
+    <div class="cookie-banner__actions">
+      <button id="cookie-accept" class="btn btn--green">Aceitar todos</button>
+      <button id="cookie-decline" class="btn btn--pink-outline">Recusar</button>
+    </div>
+  </div>
 
-    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-
-    // Duplicate ticker for seamless loop
-    const inner = document.querySelector('.ticker-inner');
-    if (inner) inner.innerHTML += inner.innerHTML;
-  </script>
+  <script src="js/main.js"></script>
 </body>
 </html>
