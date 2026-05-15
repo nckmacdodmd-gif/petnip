@@ -1,0 +1,91 @@
+"Petnip" é um projeto que venho desenvolvendo ao longo das minhas disciplinas da minha graduação em Design de Mídias: é uma plataforma digital projetada para facilitar e humanizar o processo de adoção e apoio a animais em situação de vulnerabilidade. Seu propósito é conectar, de forma prática e segura, ONGs e protetores a uma comunidade de usuários dispostos a ajudar. Por meio do aplicativo, os usuários podem encontrar seu novo melhor amigo explorando perfis detalhados por localização, porte e idade, ou podem optar por transformar uma vida através do apadrinhamento, contribuindo com alimentos, vacinas e cuidados essenciais.
+
+Com isso em mente e, crie uma Landing Page. De preferência, faça o código onde o ponto de entrada é index.html, para que eu possa adicioná-lo no GitHub e, posteriormente, fazer o deploy pelo Vercell. 
+
+Para além disso, é importante que o design do site seja divertido, acolhedor e moderno, focado no nicho de pets. O design deve usar formas orgânicas (onduladas), bordas arredondadas e pequenos elementos decorativos, para dar um toque descontraído. Quanto às fontes tipográficas, se possível, para títulos utilize a Nunito; Para textos, Poppins. A paleta de cores principal inclui:
+
+Roxo: #552cb7 | Rosa: #fb7da8 | Amarelo: #ffc567 | Azul: #058cd7 | Verde: #00995e | Vermelho: #fd5a46 | Off-white: #f5f5f5 | Preto: #000000 | bEGE: #f5ede1
+
+
+Abaixo estão os elementos essenciais das páginas. Você tem liberdade criativa para sugerir detalhes complementares que enriqueçam a interface, desde que o design final se mantenha estratégico, funcional e livre de poluição visual.
+
+# Página 1: Home
+
+I. Cabeçalho (Header):
+
+- Fundo off-white.
+- O site precisa ter uma barra de menu ao topo da página. No centro, os seguintes links de navegação: "Home" (com um fundo rosa destacando a página atual), "Sobre", "Aplicativo" e "Contato".
+
+II. Seção Hero (Destaque principal):
+
+- No canto esquerdo, o logotipo da Petnip (disponível em: https://github.com/nckmacdodmd-gif/petnip/blob/1d5665b10e3701b7bbd1a2eb0a6791cc6a5acb4c/Imagens%20Homepage/Logo%20principal.svg)
+- No canto direito, um pequeno texto de apoio: "Para cada animal em busca de um lar, existe um coração pronto para amar e, por meio da Petnip, você pode encontrar seu novo melhor amigo!" e dois botões arredondados, abaixo do texto: um escrito "Baixe nosso app" e outro escrito "Nos siga nas redes".
+- O fundo deve ter uma grande forma orgânica/ondulada rosa, da metade para o fim.
+- No centro, a imagem de destaque (disponível em: https://github.com/nckmacdodmd-gif/petnip/blob/ac9fdbb9e31c8f2131e5999077cb90ffa524a75a/Imagens%20Homepage/Banner%20gatinho%20com%20%C3%B3culos.png) . A imagem deve estar integrada de forma fluida com a onda rosa. Não a deixe pequena demais, faça que caiba na largura da página.
+
+III. Seção "Faça parte dessa causa!":
+
+- Continuando no fundo rosa orgânico.
+- À esquerda: O título "Faça parte dessa causa!" em branco. Abaixo, um card off white. Dentro do card, um texto explicando a missão da plataforma: "Nosso objetivo é facilitar e humanizar o processo de adoção e doação de suprimentos para ONGs que cuidam de animais em situação de vulnerabilidade. Buscamos oferecer aos usuários uma plataforma prática e acessível, que conecte corações dispostos a ajudar com causas que realmente precisam de apoio, seja por meio de adoção ou apadrinhamento."
+- À direita: Duas fotos com estilo "Polaroid", uma de um cachorro e outra de um gato (disponíveis em: https://github.com/nckmacdodmd-gif/petnip/blob/ac9fdbb9e31c8f2131e5999077cb90ffa524a75a/Imagens%20Homepage/Foto%20polaroid%20cachorro.jpg e https://github.com/nckmacdodmd-gif/petnip/blob/ac9fdbb9e31c8f2131e5999077cb90ffa524a75a/Imagens%20Homepage/Foto%20polaroid%20gato.jpg), dispostas de forma tortinha/descontraída. Abaixo das fotos, um botão "Saiba mais sobre nós" e um texto de apoio em branco sobre dados de animais de rua: "A Organização Mundial de Saúde (OMS) estima que, no Brasil, cerca de 30 milhões de animais, majoritamente cães e gatos, estejam em situações de rua. Pensando nisso, a Petnip veio para atuar como um mediador em procedimentos que, muitas vezes, são complexos e burocráticos."
+
+V. Seção de Avaliações (Reviews):
+
+- Fundo off white.
+- Título centralizado em roxo: "Leia nossos reviews, e adote com mais confiança!", e abaixo dele "4.8/5 -  Baseado em 5.210 reviews".
+- Abaixo, um card grande cinza claro com cantos arredondados contendo: 5 estrelas verdes, o texto de depoimento de um usuário e o nome do autor. Deixe esse card interativo, para que o usuário possa clicar nele e ver outras avaliações (você pode gerar outras).
+
+VI.. Seção de Parceiros:
+
+- Fundo continua off-white.
+- Título à esquerda em verde: "Nossos parceiros", seguido de um subtítulo explicativo: "Conheça os parceiros que estão ao nosso lado, assumindo o compromisso com a causa animal."
+- Abaixo, uma grade exibindo os logotipos de várias ONGs e parceiros (imagem com todos os logos disponível em: https://github.com/nckmacdodmd-gif/petnip/blob/ac9fdbb9e31c8f2131e5999077cb90ffa524a75a/Imagens%20Homepage/Parcerias.png).
+
+VII. Rodapé (Footer):
+
+- Fundo totalmente rosa.
+- Coluna da esquerda: Logotipo Petnip em off-white(disponível em: https://github.com/nckmacdodmd-gif/petnip/blob/a46705644f824f8cd536a26bb03eed9fff0d0b18/Imagens%20Homepage/Logo%20off-white.svg), abaixo um texto "Nos siga nas redes sociais:" e os ícones do Facebook, TikTok, X e Instagram.
+- Coluna do meio: Título "Mapa do site" com links verticais em branco (Home, Sobre nós, Aplicativo, Planos, Contato).
+- Coluna da direita: Título "Newsletter" com um campo de formulário vazado com borda branca para "Digite seu e-mail" e um botão branco "Enviar".
+- Na base inferior centralizada, os links de "Privacidade | Gerencie seus dados | Gerencie seus cookies".
+
+---
+
+# Página 2: Sobre nós
+
+I. Cabeçalho (Header):
+
+- O mesmo cabeçalho da página Home, porém agora o botão destacado em rosa deve ser o "Sobre".
+
+II. Seção Hero (Apresentação):
+
+- O fundo deve ser dividido verticalmente: a metade esquerda num bege e a metade direita em azul.
+- Lado esquerdo (bege): Uma imagem de um coelho branco usando óculos escuros amarelos (disponível em:https://github.com/nckmacdodmd-gif/petnip/blob/4a736eae486d19f6e259616229950bd2346a685b/Imagens%20P%C3%A1gina%20Sobre/Coelhinho%20de%20%C3%B3culos.png).
+- Lado direito (azul): Texto de navegação "Home > Sobre". Logo abaixo, um título grande em branco "Adoção e apadrinhamento de pets!". Abaixo, um parágrafo explicando as funcionalidades do aplicativo: "Encontre seu novo melhor amigo de forma fácil, segura e responsável.  
+No nosso aplicativo, você pode encontrar uma seleção variada de pets, consultar ONGs e serviços veterinários parceiros, ou até mesmo cadastrar um amiguinho para doação. Tudo isso, em um único lugar."
+
+
+III. Faixa de Transição:
+
+- Uma barra horizontal rosa de ponta a ponta com o texto centralizado em branco: "Baixe agora e faça parte dessa causa!".
+
+IV. Seção "Nossos planos" (Preços/Apadrinhamento):
+
+- Fundo off White.
+- Título "Nossos planos" em rosa, com um texto de apoio abaixo: "Conheça os planos de apadrinhamento que oferecemos no nosso aplicativo. 
+Os valores arrecadados são destinados aos pets e à manutenção da plataforma."
+- Três cards de preços alinhados horizontalmente: 
+> Card 1 (Verde): Plano A, R$ 10 / mês, com a lista de benefícios.
+> Card 2 (Rosa): Plano B, R$ 30 / mês, com a lista de benefícios.
+> Card 3 (Azul): Plano C, R$ 50 / mês, com a lista de benefícios.
+
+V. Seção do Aplicativo:
+
+- Fundo azul.
+
+- À esquerda: Uma composição visual dinâmica mostrando a interface do aplicativo (disponível em: https://github.com/nckmacdodmd-gif/petnip/blob/4a736eae486d19f6e259616229950bd2346a685b/Imagens%20P%C3%A1gina%20Sobre/Mockup%20celular.png)
+- À direita: O título em off white "Tá na mão!", seguido pelo subtítulo "Adote, Apadrinhe & Divulgue!". Abaixo, há um botão rosa com o texto "Baixe nosso app" e um parágrafo descritivo em branco: A Petnip te conecta a uma comunidade de animais que precisam de um lar recheado de amor — você pode explorar por localização, raça, porte, e muito mais.  E, com nossos planos de apadrinhamento, você também pode contribuir com alimentos, vacinas e cuidados especiais!"
+
+6. Rodapé (Footer):
+
+- Exatamente o mesmo rodapé descrito na página Home (fundo rosa, links, newsletter e redes sociais).
