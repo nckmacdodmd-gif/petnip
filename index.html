@@ -1,38 +1,39 @@
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Petnip - Adoção & Apadrinhamento</title>
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
     <style>
         :root {
             --roxo: #552cb7;
             --rosa: #fb7da8;
+            --rosa-hover: #e06a94;
             --amarelo: #ffc567;
             --azul: #058cd7;
             --verde: #00995e;
-            --vermelho: #fd5a46;
-            --off-white: #f5f5f5;
-            --preto: #000000;
-            --bege: #f5ede1;
-            --card-cinza: #e8e8e8;
+            --off-white: #fcfcfc;
+            --preto: #1a1a1a;
+            --shadow: 0 10px 30px rgba(0,0,0,0.08);
+            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            scroll-behavior: smooth;
         }
 
         body {
             font-family: 'Poppins', sans-serif;
             background-color: var(--off-white);
             color: var(--preto);
+            line-height: 1.6;
             overflow-x: hidden;
         }
 
@@ -41,529 +42,211 @@
             font-weight: 900;
         }
 
-        /* Header */
+        /* --- Animações --- */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* --- Header Moderno --- */
         header {
-            background-color: var(--off-white);
-            padding: 20px 0;
+            background-color: rgba(252, 252, 252, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
         }
 
         nav {
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 15px;
         }
 
         nav a {
             text-decoration: none;
             color: var(--preto);
-            font-weight: 700;
+            font-weight: 600;
             padding: 10px 25px;
             border-radius: 50px;
-            transition: 0.3s;
+            transition: var(--transition);
+            font-size: 0.95rem;
+        }
+
+        nav a:hover {
+            background-color: rgba(0,0,0,0.05);
         }
 
         nav a.active {
             background-color: var(--rosa);
             color: white;
+            box-shadow: 0 4px 15px rgba(251, 125, 168, 0.4);
         }
 
-        /* Generic Section Styling */
+        /* --- Estrutura SPA --- */
         section {
-            display: none; /* Hide sections by default for the SPA logic */
+            display: none;
+            animation: fadeIn 0.6s ease-out;
         }
 
         section.active-page {
             display: block;
         }
 
-        /* Hero Home */
+        /* --- Hero Home --- */
         .hero-home {
-            position: relative;
-            background-color: var(--off-white);
-            padding-top: 50px;
-            min-height: 80vh;
+            padding: 60px 5%;
+            min-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .hero-top {
             display: flex;
             justify-content: space-between;
-            align-items: flex-start;
-            padding: 0 5%;
-            max-width: 1400px;
-            margin: 0 auto;
+            align-items: center;
+            width: 100%;
+            max-width: 1200px;
+            margin-bottom: 40px;
+            animation: fadeInUp 0.8s ease-out;
         }
 
-        .logo-main {
-            width: 200px;
-        }
+        .logo-main { width: 180px; transition: var(--transition); }
+        .logo-main:hover { transform: scale(1.05); }
 
-        .hero-text-side {
-            max-width: 400px;
-            text-align: right;
-        }
-
-        .hero-text-side p {
-            margin-bottom: 20px;
-            font-size: 1.1rem;
-        }
-
-        .btn-group {
-            display: flex;
-            gap: 10px;
-            justify-content: flex-end;
-        }
+        .hero-text-side { max-width: 450px; text-align: right; }
+        .hero-text-side p { font-size: 1.15rem; color: #555; margin-bottom: 25px; }
 
         .btn {
-            padding: 12px 24px;
-            border-radius: 30px;
+            padding: 14px 32px;
+            border-radius: 50px;
             border: none;
             cursor: pointer;
             font-weight: 700;
-            transition: 0.3s;
+            transition: var(--transition);
             text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
         }
 
+        .btn:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.15); }
         .btn-green { background-color: var(--verde); color: white; }
         .btn-pink { background-color: var(--rosa); color: white; }
-        .btn-white { background-color: var(--off-white); color: var(--rosa); border: 2px solid var(--rosa); }
+        .btn-white { border: 2px solid var(--rosa); color: var(--rosa); background: white; }
 
         .hero-visual {
             position: relative;
-            margin-top: -50px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .wave-bg {
-            background-color: var(--rosa);
             width: 100%;
-            height: 400px;
-            clip-path: ellipse(80% 60% at 50% 100%);
-            position: absolute;
-            bottom: 0;
-            z-index: 1;
+            display: flex;
+            justify-content: center;
         }
 
         .hero-img {
             z-index: 2;
-            width: 80%;
-            max-width: 900px;
-            display: block;
+            width: 90%;
+            max-width: 800px;
+            filter: drop-shadow(0 20px 40px rgba(0,0,0,0.1));
         }
 
-        /* Cause Section */
+        .wave-bg {
+            background: linear-gradient(180deg, var(--rosa) 0%, #f46695 100%);
+            width: 120%;
+            height: 500px;
+            clip-path: ellipse(50% 40% at 50% 100%);
+            position: absolute;
+            bottom: -50px;
+            z-index: 1;
+        }
+
+        /* --- Cards e Seções --- */
         .cause {
             background-color: var(--rosa);
-            padding: 80px 5%;
-            display: flex;
-            justify-content: center;
-            gap: 50px;
-            align-items: center;
+            padding: 100px 5%;
             color: white;
-            position: relative;
-        }
-
-        .cause-content {
-            flex: 1;
-            max-width: 500px;
-        }
-
-        .cause h2 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
         }
 
         .mission-card {
-            background-color: var(--off-white);
+            background: white;
             color: var(--preto);
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 10px 10px 0px rgba(0,0,0,0.1);
-        }
-
-        .cause-right {
-            flex: 1;
-            max-width: 500px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 30px;
-        }
-
-        .polaroid-gallery {
-            display: flex;
-            gap: 20px;
+            padding: 40px;
+            border-radius: 30px;
+            box-shadow: 15px 15px 0px rgba(0,0,0,0.1);
+            animation: fadeInUp 1s ease-out;
         }
 
         .polaroid {
             background: white;
-            padding: 10px 10px 40px 10px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-            transition: 0.3s;
+            padding: 15px 15px 45px;
+            box-shadow: var(--shadow);
+            border-radius: 4px;
+            transition: var(--transition);
         }
 
-        .polaroid img {
-            width: 180px;
-            height: 180px;
-            object-fit: cover;
-        }
+        .polaroid:hover { transform: scale(1.05) rotate(0deg) !important; z-index: 10; }
 
-        .polaroid:nth-child(1) { transform: rotate(-5deg); }
-        .polaroid:nth-child(2) { transform: rotate(5deg); }
-
-        .transition-bar {
-            width: 100%;
-            display: block;
-        }
-
-        /* Reviews */
-        .reviews {
-            background-color: var(--off-white);
-            padding: 100px 5%;
-            text-align: center;
-        }
-
-        .reviews h2 { color: var(--roxo); font-size: 2.2rem; }
-        .reviews .rating { font-weight: bold; margin-top: 10px; }
-
+        /* --- Reviews Modernos --- */
+        .reviews { padding: 100px 5%; text-align: center; }
+        
         .review-card {
-            background-color: var(--card-cinza);
-            max-width: 800px;
-            margin: 50px auto 0;
-            padding: 40px;
-            border-radius: 30px;
-            cursor: pointer;
-            transition: transform 0.3s;
-        }
-
-        .review-card:hover { transform: scale(1.02); }
-
-        .stars { color: var(--verde); font-size: 1.5rem; margin-bottom: 15px; }
-
-        /* Partners */
-        .partners {
-            background-color: var(--off-white);
-            padding: 80px 5%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .partners h2 { color: var(--verde); margin-bottom: 10px; }
-        .partners p { margin-bottom: 40px; }
-        .partners img { width: 100%; max-width: 1000px; display: block; margin: 0 auto; }
-
-        /* Footer */
-        footer {
-            background-color: var(--rosa);
-            color: white;
-            padding: 60px 5% 30px;
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            max-width: 1200px;
-            margin: 0 auto 50px;
-        }
-
-        .footer-logo { width: 150px; margin-bottom: 20px; }
-
-        .social-icons {
-            display: flex;
-            gap: 15px;
-            margin-top: 15px;
-        }
-
-        .social-icons img { width: 35px; }
-
-        .footer-col h3 { margin-bottom: 20px; }
-        .footer-col ul { list-style: none; }
-        .footer-col ul li { margin-bottom: 10px; }
-        .footer-col a { color: white; text-decoration: none; }
-
-        .newsletter-form {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .newsletter-form input {
-            background: transparent;
-            border: 2px solid white;
-            padding: 12px;
-            border-radius: 10px;
-            color: white;
-        }
-
-        .newsletter-form input::placeholder { color: rgba(255,255,255,0.7); }
-
-        .footer-bottom {
-            text-align: center;
-            border-top: 1px solid rgba(255,255,255,0.2);
-            padding-top: 20px;
-            font-size: 0.9rem;
-        }
-
-        /* Sobre Nós Section */
-        .sobre-hero {
-            display: flex;
-            min-height: 60vh;
-        }
-
-        .sobre-left {
-            flex: 1;
-            background-color: var(--bege);
-            display: flex;
-            align-items: flex-end;
-            justify-content: center;
-        }
-
-        .sobre-left img { width: 80%; }
-
-        .sobre-right {
-            flex: 1;
-            background-color: var(--azul);
-            color: white;
-            padding: 80px 5%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .sobre-right h2 { font-size: 3rem; margin: 20px 0; }
-
-        .transition-pink-bar {
-            background-color: var(--rosa);
-            color: white;
-            text-align: center;
-            padding: 20px;
-            font-weight: bold;
-            font-size: 1.2rem;
-        }
-
-        /* Plans */
-        .plans-section {
-            padding: 80px 5%;
-            text-align: center;
-        }
-
-        .plans-section h2 { color: var(--rosa); font-size: 2.5rem; }
-        .plans-section p { margin-bottom: 50px; }
-
-        .plans-grid {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-
-        .plan-card {
-            flex: 1;
-            min-width: 280px;
-            max-width: 350px;
-            padding: 40px 30px;
-            border-radius: 20px;
-            color: white;
-            text-align: left;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        }
-
-        .plan-card h3 { font-size: 1.8rem; margin-bottom: 20px; }
-        .plan-card .price { font-size: 2.2rem; font-weight: 900; margin-bottom: 20px; }
-        .plan-card ul { list-style: none; }
-        .plan-card ul li { margin-bottom: 10px; position: relative; padding-left: 20px; }
-        .plan-card ul li::before { content: '•'; position: absolute; left: 0; }
-
-        .card-verde { background-color: var(--verde); }
-        .card-rosa { background-color: var(--rosa); }
-        .card-azul { background-color: var(--azul); }
-
-        /* App Section Home/Sobre */
-        .app-section {
-            background-color: var(--azul);
-            padding: 100px 5%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 50px;
-            color: white;
-        }
-
-        .app-mockup { width: 40%; max-width: 400px; }
-        .app-content { max-width: 500px; }
-        .app-content h2 { font-size: 3.5rem; margin-bottom: 10px; }
-        .app-content h3 { font-size: 2rem; margin-bottom: 20px; }
-
-        /* Aplicativo Page */
-        .app-page-hero {
-            position: relative;
-            height: 60vh;
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-            padding-right: 10%;
-        }
-
-        .app-hero-overlay {
-            color: white;
-            max-width: 500px;
-            text-align: right;
-        }
-
-        .app-hero-overlay h2 { font-size: 3rem; }
-
-        .app-wave-transition {
-            width: 100%;
-            height: 100px;
-            background-color: var(--verde);
-            clip-path: ellipse(70% 100% at 50% 100%);
-            margin-top: -100px;
-            position: relative;
-            z-index: 5;
-        }
-
-        .download-section {
-            background-color: var(--verde);
-            padding: 80px 5%;
-            color: white;
-        }
-
-        .download-content {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .download-btns {
-            display: flex;
-            gap: 20px;
-            margin-top: 30px;
-        }
-
-        .store-btn {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            border: 2px solid white;
-            padding: 15px 30px;
-            border-radius: 15px;
-            text-decoration: none;
-            color: white;
-            font-weight: bold;
-        }
-
-        .store-btn img { width: 30px; }
-
-        /* Contato Page */
-        .contato-social {
-            padding: 80px 5%;
-            display: flex;
-            align-items: flex-end;
-            justify-content: center;
-            gap: 50px;
-            position: relative;
-        }
-
-        .social-text { max-width: 500px; }
-        .social-text h2 { color: var(--roxo); font-size: 3rem; margin-bottom: 15px; }
-
-        .dog-img { width: 350px; }
-
-        .social-central-btns {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            padding: 40px 0;
-            background-color: var(--off-white);
-        }
-
-        .social-box {
-            background-color: var(--roxo);
-            width: 60px;
-            height: 60px;
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: 0.3s;
-        }
-
-        .social-box:hover { transform: translateY(-5px); }
-        .social-box img { width: 30px; }
-
-        /* Contact Form */
-        .form-section {
-            padding: 80px 5%;
-            display: flex;
-            justify-content: center;
-        }
-
-        .form-card {
-            background-color: var(--rosa);
+            background: white;
+            max-width: 700px;
+            margin: 40px auto;
             padding: 50px;
             border-radius: 40px;
-            width: 100%;
-            max-width: 900px;
-            color: white;
-        }
-
-        .form-card h2 { font-size: 2.5rem; margin-bottom: 40px; }
-
-        .contact-form {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-
-        .full-width { grid-column: span 2; }
-
-        .contact-form input, .contact-form textarea {
-            background-color: var(--off-white);
-            border: none;
-            padding: 15px;
-            border-radius: 15px;
-            font-family: inherit;
-            width: 100%;
-        }
-
-        .contact-form textarea { height: 150px; resize: none; }
-
-        .submit-btn {
-            grid-column: span 2;
-            justify-self: center;
-            background-color: var(--off-white);
-            color: var(--rosa);
-            border: none;
-            padding: 15px 60px;
-            border-radius: 30px;
-            font-weight: 900;
+            box-shadow: var(--shadow);
             cursor: pointer;
-            font-size: 1.1rem;
-            margin-top: 20px;
+            position: relative;
+            transition: var(--transition);
         }
 
-        /* Decorations */
-        .deco-paw { position: absolute; width: 40px; opacity: 0.8; }
-        .deco-star { position: absolute; width: 25px; opacity: 0.8; }
+        .review-card:hover { transform: translateY(-10px); }
+        .stars { color: var(--amarelo); font-size: 1.8rem; margin-bottom: 20px; }
 
+        /* --- Planos --- */
+        .plan-card {
+            transition: var(--transition);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .plan-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        /* --- Formulário --- */
+        .contact-form input, .contact-form textarea {
+            border: 2px solid transparent;
+            transition: var(--transition);
+            background: #f0f0f0;
+        }
+
+        .contact-form input:focus, .contact-form textarea:focus {
+            background: white;
+            border-color: var(--amarelo);
+            outline: none;
+            box-shadow: 0 0 15px rgba(255, 197, 103, 0.3);
+        }
+
+        /* --- Mobile --- */
         @media (max-width: 768px) {
-            .hero-top { flex-direction: column; text-align: center; align-items: center; }
+            .hero-top { flex-direction: column; text-align: center; gap: 30px; }
             .hero-text-side { text-align: center; }
+            .cause { grid-template-columns: 1fr; }
             .btn-group { justify-content: center; }
-            .cause { flex-direction: column; }
-            .sobre-hero { flex-direction: column; }
             .app-section { flex-direction: column; text-align: center; }
-            .app-mockup { width: 80%; }
-            .contact-form { grid-template-columns: 1fr; }
-            .contact-form .full-width, .submit-btn { grid-column: span 1; }
-            .contato-social { flex-direction: column; text-align: center; align-items: center; }
         }
     </style>
 </head>
@@ -578,16 +261,15 @@
         </nav>
     </header>
 
-    <!-- PAGE 1: HOME -->
     <section id="home" class="active-page">
         <div class="hero-home">
             <div class="hero-top">
                 <img src="https://raw.githubusercontent.com/nckmacdodmd-gif/petnip/1d5665b10e3701b7bbd1a2eb0a6791cc6a5acb4c/Imagens%20Homepage/Logo%20principal.svg" alt="Petnip" class="logo-main">
                 <div class="hero-text-side">
-                    <p>Para cada animal em busca de um lar, existe um coração pronto para amar e, por meio da Petnip, você pode encontrar seu novo melhor amigo!</p>
-                    <div class="btn-group">
-                        <a href="#aplicativo" onclick="showPage('aplicativo')" class="btn btn-green">Baixe nosso app</a>
-                        <a href="#contato" onclick="showPage('contato')" class="btn btn-pink">Nos siga nas redes</a>
+                    <p>Encontre seu novo melhor amigo através de uma experiência digital humana e afetuosa.</p>
+                    <div class="btn-group" style="display: flex; gap: 15px;">
+                        <a href="#aplicativo" onclick="showPage('aplicativo')" class="btn btn-green">Baixar App</a>
+                        <a href="#contato" onclick="showPage('contato')" class="btn btn-white">Redes Sociais</a>
                     </div>
                 </div>
             </div>
@@ -599,230 +281,47 @@
 
         <div class="cause">
             <div class="cause-content">
-                <h2>Faça parte dessa causa!</h2>
+                <h2 style="font-size: 3rem; margin-bottom: 20px;">Faça parte dessa causa!</h2>
                 <div class="mission-card">
-                    <p>Nosso objetivo é facilitar e humanizar o processo de adoção e doação de suprimentos para ONGs que cuidam de animais em situação de vulnerabilidade. Buscamos oferecer aos usuários uma plataforma prática e acessível, que conecte corações dispostos a ajudar com causas que realmente precisam de apoio, seja por meio de adoção ou apadrinhamento.</p>
+                    <p>Facilitamos o encontro entre corações generosos e pets que aguardam uma segunda chance. Com tecnologia e amor, humanizamos a adoção.</p>
                 </div>
             </div>
             <div class="cause-right">
-                <div class="polaroid-gallery">
-                    <div class="polaroid"><img src="https://raw.githubusercontent.com/nckmacdodmd-gif/petnip/ac9fdbb9e31c8f2131e5999077cb90ffa524a75a/Imagens%20Homepage/Foto%20polaroid%20cachorro.jpg" alt="Cachorro"></div>
-                    <div class="polaroid"><img src="https://raw.githubusercontent.com/nckmacdodmd-gif/petnip/ac9fdbb9e31c8f2131e5999077cb90ffa524a75a/Imagens%20Homepage/Foto%20polaroid%20gato.jpg" alt="Gato"></div>
+                <div class="polaroid-gallery" style="display: flex; gap: 20px;">
+                    <div class="polaroid" style="transform: rotate(-3deg);"><img src="https://raw.githubusercontent.com/nckmacdodmd-gif/petnip/ac9fdbb9e31c8f2131e5999077cb90ffa524a75a/Imagens%20Homepage/Foto%20polaroid%20cachorro.jpg" alt="Cachorro" style="width: 180px; height: 180px; object-fit: cover;"></div>
+                    <div class="polaroid" style="transform: rotate(3deg);"><img src="https://raw.githubusercontent.com/nckmacdodmd-gif/petnip/ac9fdbb9e31c8f2131e5999077cb90ffa524a75a/Imagens%20Homepage/Foto%20polaroid%20gato.jpg" alt="Gato" style="width: 180px; height: 180px; object-fit: cover;"></div>
                 </div>
-                <div style="text-align: right;">
-                    <a href="#sobre" onclick="showPage('sobre')" class="btn btn-white" style="background: white; border: none; font-weight: 900; box-shadow: 5px 5px 0px rgba(0,0,0,0.1);">Saiba mais sobre nós</a>
-                    <p style="margin-top: 20px; font-size: 0.9rem; max-width: 350px;">A Organização Mundial de Saúde (OMS) estima que, no Brasil, cerca de 30 milhões de animais, majoritamente cães e gatos, estejam em situações de rua. Pensando nisso, a Petnip veio para atuar como um mediador em procedimentos que, muitas vezes, são complexos e burocráticos.</p>
-                </div>
+                <p style="margin-top: 30px; opacity: 0.9; font-size: 0.95rem;">Existem hoje 30 milhões de animais de rua no Brasil. A Petnip nasceu para transformar essa realidade.</p>
             </div>
         </div>
-        <img src="https://raw.githubusercontent.com/nckmacdodmd-gif/petnip/071b4d7e20b478d3194f00799c8abe6aac833512/%C3%8Dcones/Faixa%20de%20transi%C3%A7%C3%A3o.svg" alt="Transição" class="transition-bar">
 
         <div class="reviews">
-            <h2>Leia nossos reviews, e adote com mais confiança!</h2>
-            <p class="rating">4.8/5 ⭐ - Baseado em 5.210 reviews</p>
+            <h2 style="color: var(--roxo);">Amor em depoimentos</h2>
             <div class="review-card" onclick="nextReview()">
                 <div class="stars">★★★★★</div>
-                <p id="review-text">"Como não posso ter pets no meu apartamento, a opção de apadrinhamento da Petnip foi perfeita. Consigo ajudar financeiramente um cãozinho de abrigo e acompanhar a rotina dele pelo app. Uma iniciativa linda!"</p>
-                <p style="margin-top: 20px; font-weight: bold;"><span id="review-author">Camila Souza</span> - App Store</p>
+                <p id="review-text" style="font-size: 1.2rem; font-style: italic;">"A opção de apadrinhamento da Petnip foi perfeita. Consigo ajudar um cãozinho de abrigo e acompanhar a rotina dele pelo app."</p>
+                <p style="margin-top: 25px; font-weight: bold; color: var(--rosa);"><span id="review-author">Camila Souza</span></p>
             </div>
-        </div>
-
-        <div class="partners">
-            <h2>Nossos parceiros</h2>
-            <p>Conheça os parceiros que estão ao nosso lado, assumindo o compromisso com a causa animal.</p>
-            <img src="https://raw.githubusercontent.com/nckmacdodmd-gif/petnip/ac9fdbb9e31c8f2131e5999077cb90ffa524a75a/Imagens%20Homepage/Parcerias.png" alt="Logotipos Parceiros">
         </div>
     </section>
 
-    <!-- PAGE 2: SOBRE NÓS -->
     <section id="sobre">
-        <div class="sobre-hero">
-            <div class="sobre-left">
-                <img src="https://raw.githubusercontent.com/nckmacdodmd-gif/petnip/4a736eae486d19f6e259616229950bd2346a685b/Imagens%20P%C3%A1gina%20Sobre/Coelhinho%20de%20%C3%B3culos.png" alt="Coelhinho">
-            </div>
-            <div class="sobre-right">
-                <p>Home > Sobre</p>
-                <h2>Adoção e apadrinhamento de pets!</h2>
-                <p>Encontre seu novo melhor amigo de forma fácil, segura e responsável. No nosso aplicativo, você pode encontrar uma seleção variada de pets, consultar ONGs e serviços veterinários parceiros, ou até mesmo cadastrar um amiguinho para doação. Tudo isso, em um único lugar.</p>
-            </div>
-        </div>
-        <div class="transition-pink-bar">
-            Baixe agora e faça parte dessa causa!
-        </div>
-        <div class="plans-section">
-            <h2>Nossos planos</h2>
-            <p>Conheça os planos de apadrinhamento que oferecemos no nosso aplicativo. Os valores arrecadados são destinados aos pets e à manutenção da plataforma.</p>
-            <div class="plans-grid">
-                <div class="plan-card card-verde">
-                    <h3>Plano A</h3>
-                    <div class="price">R$ 10 <small>/ mês</small></div>
-                    <ul>
-                        <li>Certificado digital de padrinho</li>
-                        <li>Nome listado no perfil do pet</li>
-                        <li>Atualizações por e-mail</li>
-                    </ul>
-                </div>
-                <div class="plan-card card-rosa">
-                    <h3>Plano B</h3>
-                    <div class="price">R$ 30 <small>/ mês</small></div>
-                    <ul>
-                        <li>Tudo do Plano A</li>
-                        <li>Relatório mensal com fotos do animal</li>
-                    </ul>
-                </div>
-                <div class="plan-card card-azul">
-                    <h3>Plano C</h3>
-                    <div class="price">R$ 50 <small>/ mês</small></div>
-                    <ul>
-                        <li>Tudo do Plano A e B</li>
-                        <li>Acompanhamento da saúde (vacinas e check-ups)</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="app-section">
-            <img src="https://raw.githubusercontent.com/nckmacdodmd-gif/petnip/4a736eae486d19f6e259616229950bd2346a685b/Imagens%20P%C3%A1gina%20Sobre/Mockup%20celular.png" alt="App Mockup" class="app-mockup">
-            <div class="app-content">
-                <h2>Tá na mão!</h2>
-                <h3>Adote, Apadrinhe & Divulgue!</h3>
-                <a href="#aplicativo" onclick="showPage('aplicativo')" class="btn btn-pink" style="display: inline-block; margin-bottom: 20px;">Baixe nosso app</a>
-                <p>A Petnip te conecta a uma comunidade de animais que precisam de um lar recheado de amor — você pode explorar por localização, raça, porte, e muito mais. E, com nossos planos de apadrinhamento, você também pode contribuir com alimentos, vacinas e cuidados especiais!</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- PAGE 3: APLICATIVO -->
-    <section id="aplicativo">
-        <div class="app-page-hero" style="background-image: url('https://raw.githubusercontent.com/nckmacdodmd-gif/petnip/b226c76e2947006a908c4d46799af900ef173b65/Imagens%20P%C3%A1gina%20Aplicativo/Mulher%20com%20o%20doguinho.jpg');">
-            <div class="app-hero-overlay">
-                <h2>Participe da comunidade!</h2>
-                <p>Nos orgulhamos de já termos contribuído para mais de 3000 finais felizes, unindo pets que precisavam de uma segunda chance com pessoas dispostas a oferecer uma nova vida.</p>
-            </div>
-        </div>
-        <div class="app-wave-transition"></div>
-        <div class="download-section">
-            <div class="download-content">
-                <h2>Adote, apadrinhe e divulgue</h2>
-                <p>Junte-se aos milhares de usuários em todo o Brasil que contam com o app da Petnip para facilitar o dia a dia.</p>
-                <div class="download-btns">
-                    <a href="#" class="store-btn">
-                        <img src="https://raw.githubusercontent.com/nckmacdodmd-gif/petnip/b226c76e2947006a908c4d46799af900ef173b65/%C3%8Dcones/%C3%8Dcone%20Apple%20Store.svg" alt="Apple">
-                        Disponível na App Store
-                    </a>
-                    <a href="#" class="store-btn">
-                        <img src="https://raw.githubusercontent.com/nckmacdodmd-gif/petnip/b226c76e2947006a908c4d46799af900ef173b65/%C3%8Dcones/%C3%8Dcone%20Google%20Play.svg" alt="Google">
-                        Disponível no Google Play
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- PAGE 4: CONTATO -->
-    <section id="contato">
-        <div class="contato-social">
-            <div class="social-text">
-                <h2>Nos siga nas redes!</h2>
-                <p>Fique por dentro das novidades, dicas de cuidados e faça parte da comunidade mais fofa da internet!</p>
-            </div>
-            <img src="https://raw.githubusercontent.com/nckmacdodmd-gif/petnip/b226c76e2947006a908c4d46799af900ef173b65/Imagens%20P%C3%A1gina%20Contato/Buldogue%20tchutchuco.png" alt="Bulldog" class="dog-img">
+        <div style="padding: 100px 5%; text-align: center;">
+            <h2 style="font-size: 3rem; color: var(--azul);">Nossa Missão</h2>
+            <p style="max-width: 800px; margin: 20px auto;">Conectar tecnologia e compaixão para esvaziar abrigos e encher lares de alegria.</p>
             
-            <!-- Paw & Star Decorations -->
-            <img src="https://github.com/nckmacdodmd-gif/petnip/blob/071b4d7e20b478d3194f00799c8abe6aac833512/%C3%8Dcones/Pata%20amarela.svg?raw=true" class="deco-paw" style="top: 10%; right: 10%;">
-            <img src="https://github.com/nckmacdodmd-gif/petnip/blob/071b4d7e20b478d3194f00799c8abe6aac833512/%C3%8Dcones/Pata%20rosa.svg?raw=true" class="deco-paw" style="top: 40%; left: 5%;">
-            <img src="https://github.com/nckmacdodmd-gif/petnip/blob/071b4d7e20b478d3194f00799c8abe6aac833512/%C3%8Dcones/Estrela%20rosa.svg?raw=true" class="deco-star" style="top: 20%; left: 20%;">
-            <img src="https://github.com/nckmacdodmd-gif/petnip/blob/071b4d7e20b478d3194f00799c8abe6aac833512/%C3%8Dcones/Estrela%20azul.svg?raw=true" class="deco-star" style="top: 15%; right: 40%;">
-        </div>
-        <img src="https://raw.githubusercontent.com/nckmacdodmd-gif/petnip/071b4d7e20b478d3194f00799c8abe6aac833512/%C3%8Dcones/Faixa%20de%20transi%C3%A7%C3%A3o.svg" alt="Transição" class="transition-bar" style="margin-bottom: 40px;">
-        
-        <div class="social-central-btns">
-            <div class="social-box"><img src="https://raw.githubusercontent.com/nckmacdodmd-gif/petnip/071b4d7e20b478d3194f00799c8abe6aac833512/%C3%8Dcones/%C3%8Dcone%20Facebook.svg" alt="FB"></div>
-            <div class="social-box"><img src="https://raw.githubusercontent.com/nckmacdodmd-gif/petnip/071b4d7e20b478d3194f00799c8abe6aac833512/%C3%8Dcones/%C3%8Dcone%20Tiktok.svg" alt="TikTok"></div>
-            <div class="social-box"><img src="https://raw.githubusercontent.com/nckmacdodmd-gif/petnip/071b4d7e20b478d3194f00799c8abe6aac833512/%C3%8Dcones/%C3%8Dcone%20X.svg" alt="X"></div>
-            <div class="social-box"><img src="https://raw.githubusercontent.com/nckmacdodmd-gif/petnip/071b4d7e20b478d3194f00799c8abe6aac833512/%C3%8Dcones/%C3%8Dcone%20Instagram.svg" alt="Insta"></div>
-        </div>
-
-        <div class="form-section">
-            <div class="form-card">
-                <h2>Precisa de ajuda?</h2>
-                <form class="contact-form">
-                    <input type="text" placeholder="Nome e Sobrenome">
-                    <input type="text" placeholder="Número de Telefone">
-                    <input type="email" placeholder="E-mail" class="full-width">
-                    <input type="text" placeholder="Assunto" class="full-width">
-                    <textarea placeholder="Escreva sua mensagem" class="full-width"></textarea>
-                    <button type="button" class="submit-btn">Enviar</button>
-                </form>
-            </div>
+            <div class="plans-grid" style="display: flex; gap: 25px; justify-content: center; flex-wrap: wrap; margin-top: 50px;">
+                <div class="plan-card card-verde" style="background: var(--verde); color: white; padding: 40px; border-radius: 25px; width: 300px; text-align: left;">
+                    <h3>Amigo Bronze</h3>
+                    <div style="font-size: 2rem; font-weight: 900; margin: 15px 0;">R$ 10 <small>/mês</small></div>
+                    <ul style="list-style: none; opacity: 0.9;">
+                        <li>• Certificado Digital</li>
+                        <li>• Nome no Mural</li>
+                    </ul>
+                </div>
+                </div>
         </div>
     </section>
 
-    <footer>
-        <div class="footer-grid">
-            <div class="footer-col">
-                <img src="https://raw.githubusercontent.com/nckmacdodmd-gif/petnip/a46705644f824f8cd536a26bb03eed9fff0d0b18/Imagens%20Homepage/Logo%20off-white.svg" alt="Petnip" class="footer-logo">
-                <p>Nos siga nas redes sociais:</p>
-                <div class="social-icons">
-                    <img src="https://raw.githubusercontent.com/nckmacdodmd-gif/petnip/b226c76e2947006a908c4d46799af900ef173b65/%C3%8Dcones/%C3%8Dcone%20Facebook.svg" alt="FB">
-                    <img src="https://raw.githubusercontent.com/nckmacdodmd-gif/petnip/b226c76e2947006a908c4d46799af900ef173b65/%C3%8Dcones/%C3%8Dcone%20Tiktok.svg" alt="TikTok">
-                    <img src="https://raw.githubusercontent.com/nckmacdodmd-gif/petnip/b226c76e2947006a908c4d46799af900ef173b65/%C3%8Dcones/%C3%8Dcone%20X.svg" alt="X">
-                    <img src="https://raw.githubusercontent.com/nckmacdodmd-gif/petnip/b226c76e2947006a908c4d46799af900ef173b65/%C3%8Dcones/%C3%8Dcone%20Instagram.svg" alt="Insta">
-                </div>
-            </div>
-            <div class="footer-col">
-                <h3>Mapa do site</h3>
-                <ul>
-                    <li><a href="#home" onclick="showPage('home')">Home</a></li>
-                    <li><a href="#sobre" onclick="showPage('sobre')">Sobre nós</a></li>
-                    <li><a href="#aplicativo" onclick="showPage('aplicativo')">Aplicativo</a></li>
-                    <li><a href="#contato" onclick="showPage('contato')">Contato</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h3>Newsletter</h3>
-                <form class="newsletter-form">
-                    <input type="email" placeholder="Digite seu e-mail">
-                    <button type="button" class="btn" style="background: white; color: var(--rosa);">Enviar</button>
-                </form>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            Privacidade | Gerencie seus dados | Gerencie seus cookies
-        </div>
-    </footer>
-
-    <script>
-        function showPage(pageId) {
-            // Update Active Link
-            document.querySelectorAll('nav a').forEach(link => {
-                link.classList.remove('active');
-                if(link.getAttribute('href') === '#' + pageId) {
-                    link.classList.add('active');
-                }
-            });
-
-            // Update Active Section
-            document.querySelectorAll('section').forEach(section => {
-                section.classList.remove('active-page');
-            });
-            document.getElementById(pageId).classList.add('active-page');
-
-            // Scroll to top
-            window.scrollTo(0, 0);
-        }
-
-        const reviews = [
-            { text: '"Como não posso ter pets no meu apartamento, a opção de apadrinhamento da Petnip foi perfeita. Consigo ajudar financeiramente um cãozinho de abrigo e acompanhar a rotina dele pelo app. Uma iniciativa linda!"', author: "Camila Souza" },
-            { text: '"Adotei o Thor através do app e foi a melhor decisão da minha vida. O processo foi super transparente e o suporte da Petnip foi incrível!"', author: "Marcos Oliveira" },
-            { text: '"Plataforma moderna e fácil de usar. Os perfis dos pets são muito detalhados, o que ajuda muito a encontrar um companheiro compatível."', author: "Julia Mendes" }
-        ];
-
-        let currentReview = 0;
-        function nextReview() {
-            currentReview = (currentReview + 1) % reviews.length;
-            document.getElementById('review-text').innerText = reviews[currentReview].text;
-            document.getElementById('review-author').innerText = reviews[currentReview].author;
-        }
-    </script>
-</body>
-</html>
+    <section id="contato">
+        <div class="form-section">
