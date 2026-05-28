@@ -1,0 +1,1490 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Petnip - Adoção & Apadrinhamento</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* ===========================
+           VARIÁVEIS E RESET
+        =========================== */
+        :root {
+            --roxo: #552cb7;
+            --rosa: #fb7da8;
+            --amarelo: #ffc567;
+            --azul: #058cd7;
+            --verde: #00995e;
+            --vermelho: #fd5a46;
+            --off-white: #f5f5f5;
+            --preto: #1a1a1a;
+            --bege: #f5ede1;
+            --card-cinza: #e8e8e8;
+
+            /* Sombras refinadas */
+            --shadow-soft: 0 4px 24px rgba(0,0,0,0.07);
+            --shadow-card: 0 8px 32px rgba(0,0,0,0.10);
+            --shadow-hover: 0 16px 48px rgba(0,0,0,0.14);
+            --shadow-plan: 0 8px 40px rgba(0,0,0,0.13);
+
+            /* Transição padrão */
+            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--off-white);
+            color: var(--preto);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Nunito', sans-serif;
+            font-weight: 900;
+            line-height: 1.2;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* ===========================
+           HEADER & NAVEGAÇÃO
+        =========================== */
+        header {
+            background-color: var(--off-white);
+            padding: 16px 24px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow-soft);
+            backdrop-filter: blur(8px);
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--preto);
+            font-weight: 700;
+            font-size: 0.95rem;
+            padding: 10px 24px;
+            border-radius: 50px;
+            transition: var(--transition);
+            position: relative;
+            letter-spacing: 0.02em;
+        }
+
+        nav a:hover {
+            background-color: rgba(251, 125, 168, 0.12);
+            color: var(--rosa);
+            transform: translateY(-1px);
+        }
+
+        nav a.active {
+            background-color: var(--rosa);
+            color: white;
+            box-shadow: 0 4px 16px rgba(251, 125, 168, 0.4);
+        }
+
+        nav a.active:hover {
+            background-color: #f96899;
+            color: white;
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(251, 125, 168, 0.5);
+        }
+
+        /* ===========================
+           TRANSIÇÕES DE PÁGINA (SPA)
+        =========================== */
+        section {
+            display: none;
+            opacity: 0;
+            transform: translateY(14px);
+        }
+
+        section.active-page {
+            display: block;
+            animation: pageEnter 0.45s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        @keyframes pageEnter {
+            from {
+                opacity: 0;
+                transform: translateY(14px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ===========================
+           BOTÕES
+        =========================== */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 13px 28px;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            text-decoration: none;
+            letter-spacing: 0.02em;
+            white-space: nowrap;
+        }
+
+        .btn-green {
+            background-color: var(--verde);
+            color: white;
+            box-shadow: 0 4px 16px rgba(0, 153, 94, 0.3);
+        }
+        .btn-green:hover {
+            background-color: #007a4c;
+            box-shadow: 0 8px 24px rgba(0, 153, 94, 0.45);
+            transform: translateY(-2px) scale(1.03);
+        }
+
+        .btn-pink {
+            background-color: var(--rosa);
+            color: white;
+            box-shadow: 0 4px 16px rgba(251, 125, 168, 0.3);
+        }
+        .btn-pink:hover {
+            background-color: #f96899;
+            box-shadow: 0 8px 24px rgba(251, 125, 168, 0.45);
+            transform: translateY(-2px) scale(1.03);
+        }
+
+        .btn-white {
+            background-color: white;
+            color: var(--rosa);
+            border: 2px solid var(--rosa);
+        }
+        .btn-white:hover {
+            background-color: var(--rosa);
+            color: white;
+            transform: translateY(-2px) scale(1.03);
+            box-shadow: 0 8px 24px rgba(251, 125, 168, 0.35);
+        }
+
+        /* ===========================
+           HOME — HERO
+        =========================== */
+        .hero-home {
+            background-color: var(--off-white);
+            padding-top: 60px;
+            min-height: 80vh;
+            overflow: hidden;
+        }
+
+        .hero-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 0 6%;
+            max-width: 1400px;
+            margin: 0 auto;
+            gap: 40px;
+        }
+
+        .logo-main {
+            width: 200px;
+            flex-shrink: 0;
+        }
+
+        .hero-text-side {
+            max-width: 420px;
+            text-align: right;
+        }
+
+        .hero-text-side p {
+            margin-bottom: 28px;
+            font-size: 1.05rem;
+            color: #444;
+            line-height: 1.7;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 12px;
+            justify-content: flex-end;
+            flex-wrap: wrap;
+        }
+
+        .hero-visual {
+            position: relative;
+            margin-top: -40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .wave-bg {
+            background-color: var(--rosa);
+            width: 100%;
+            height: 400px;
+            clip-path: ellipse(80% 60% at 50% 100%);
+            position: absolute;
+            bottom: 0;
+            z-index: 1;
+        }
+
+        .hero-img {
+            z-index: 2;
+            width: 80%;
+            max-width: 900px;
+            display: block;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .hero-img:hover {
+            transform: scale(1.015) translateY(-4px);
+        }
+
+        /* ===========================
+           HOME — CAUSA
+        =========================== */
+        .cause {
+            background-color: var(--rosa);
+            padding: 96px 6%;
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            align-items: center;
+            color: white;
+        }
+
+        .cause-content {
+            flex: 1;
+            max-width: 500px;
+        }
+
+        .cause h2 {
+            font-size: 2.6rem;
+            margin-bottom: 28px;
+        }
+
+        .mission-card {
+            background-color: var(--off-white);
+            color: var(--preto);
+            padding: 36px;
+            border-radius: 24px;
+            box-shadow: var(--shadow-card);
+            line-height: 1.75;
+            transition: var(--transition);
+        }
+
+        .mission-card:hover {
+            box-shadow: var(--shadow-hover);
+            transform: translateY(-3px);
+        }
+
+        .cause-right {
+            flex: 1;
+            max-width: 500px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 36px;
+        }
+
+        .polaroid-gallery {
+            display: flex;
+            gap: 24px;
+        }
+
+        .polaroid {
+            background: white;
+            padding: 10px 10px 44px 10px;
+            box-shadow: var(--shadow-card);
+            transition: var(--transition);
+        }
+
+        .polaroid img {
+            width: 180px;
+            height: 180px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .polaroid:nth-child(1) { transform: rotate(-5deg); }
+        .polaroid:nth-child(2) { transform: rotate(5deg); }
+
+        .polaroid:hover {
+            box-shadow: var(--shadow-hover);
+            z-index: 2;
+        }
+
+        .polaroid:nth-child(1):hover { transform: rotate(-2deg) scale(1.04); }
+        .polaroid:nth-child(2):hover { transform: rotate(2deg) scale(1.04); }
+
+        .cause-cta-area {
+            text-align: right;
+            width: 100%;
+        }
+
+        .cause-cta-area p {
+            margin-top: 20px;
+            font-size: 0.88rem;
+            max-width: 350px;
+            margin-left: auto;
+            opacity: 0.9;
+            line-height: 1.65;
+        }
+
+        .transition-bar {
+            width: 100%;
+            display: block;
+            line-height: 0;
+        }
+
+        /* ===========================
+           HOME — REVIEWS
+        =========================== */
+        .reviews {
+            background-color: var(--off-white);
+            padding: 100px 6%;
+            text-align: center;
+        }
+
+        .reviews h2 {
+            color: var(--roxo);
+            font-size: 2.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .reviews .rating {
+            font-weight: 700;
+            margin-top: 12px;
+            color: #555;
+            font-size: 0.95rem;
+        }
+
+        .review-card {
+            background-color: var(--card-cinza);
+            max-width: 780px;
+            margin: 48px auto 0;
+            padding: 44px;
+            border-radius: 32px;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: var(--shadow-soft);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .review-card::after {
+            content: 'Clique para próximo →';
+            position: absolute;
+            bottom: 16px;
+            right: 24px;
+            font-size: 0.78rem;
+            color: #999;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+        }
+
+        .review-card:hover {
+            transform: scale(1.025) translateY(-4px);
+            box-shadow: var(--shadow-hover);
+            background-color: #e0e0e0;
+        }
+
+        .stars {
+            color: var(--verde);
+            font-size: 1.4rem;
+            margin-bottom: 16px;
+            letter-spacing: 2px;
+        }
+
+        #review-text {
+            font-size: 1rem;
+            line-height: 1.75;
+            color: #333;
+            transition: opacity 0.3s ease;
+        }
+
+        #review-text.fade { opacity: 0; }
+
+        /* ===========================
+           HOME — PARCEIROS
+        =========================== */
+        .partners {
+            background-color: var(--off-white);
+            padding: 80px 6% 100px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .partners h2 {
+            color: var(--verde);
+            margin-bottom: 12px;
+            font-size: 1.9rem;
+        }
+
+        .partners > p {
+            margin-bottom: 44px;
+            color: #555;
+            font-size: 0.98rem;
+        }
+
+        .partners img {
+            width: 100%;
+            max-width: 1000px;
+            display: block;
+            margin: 0 auto;
+            filter: grayscale(20%);
+            transition: var(--transition);
+        }
+
+        .partners img:hover {
+            filter: grayscale(0%);
+        }
+
+        /* ===========================
+           SOBRE — HERO
+        =========================== */
+        .sobre-hero {
+            display: flex;
+            min-height: 60vh;
+        }
+
+        .sobre-left {
+            flex: 1;
+            background-color: var(--bege);
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .sobre-left img {
+            width: 80%;
+            max-width: 420px;
+            display: block;
+            transition: transform 0.6s var(--transition);
+        }
+
+        .sobre-left:hover img {
+            transform: scale(1.03) translateY(-6px);
+        }
+
+        .sobre-right {
+            flex: 1;
+            background-color: var(--azul);
+            color: white;
+            padding: 80px 6%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .sobre-right .breadcrumb {
+            font-size: 0.85rem;
+            opacity: 0.75;
+            letter-spacing: 0.04em;
+        }
+
+        .sobre-right h2 {
+            font-size: 2.8rem;
+        }
+
+        .sobre-right p {
+            font-size: 1rem;
+            line-height: 1.75;
+            opacity: 0.92;
+            max-width: 500px;
+        }
+
+        .transition-pink-bar {
+            background-color: var(--rosa);
+            color: white;
+            text-align: center;
+            padding: 24px 20px;
+            font-weight: 700;
+            font-size: 1.15rem;
+            letter-spacing: 0.02em;
+        }
+
+        /* ===========================
+           SOBRE — PLANOS
+        =========================== */
+        .plans-section {
+            padding: 96px 6%;
+            text-align: center;
+            background-color: var(--off-white);
+        }
+
+        .plans-section h2 {
+            color: var(--rosa);
+            font-size: 2.5rem;
+            margin-bottom: 16px;
+        }
+
+        .plans-section > p {
+            max-width: 600px;
+            margin: 0 auto 56px;
+            color: #555;
+            line-height: 1.7;
+        }
+
+        .plans-grid {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        .plan-card {
+            flex: 1;
+            min-width: 280px;
+            max-width: 340px;
+            padding: 44px 32px;
+            border-radius: 24px;
+            color: white;
+            text-align: left;
+            box-shadow: var(--shadow-plan);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .plan-card::before {
+            content: '';
+            position: absolute;
+            top: -40px;
+            right: -40px;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            pointer-events: none;
+        }
+
+        .plan-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.18);
+        }
+
+        .plan-card h3 {
+            font-size: 1.7rem;
+            margin-bottom: 16px;
+        }
+
+        .plan-card .price {
+            font-size: 2.2rem;
+            font-weight: 900;
+            margin-bottom: 24px;
+            font-family: 'Nunito', sans-serif;
+        }
+
+        .plan-card .price small {
+            font-size: 1rem;
+            font-weight: 400;
+            opacity: 0.8;
+        }
+
+        .plan-card ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .plan-card ul li {
+            position: relative;
+            padding-left: 20px;
+            font-size: 0.93rem;
+            line-height: 1.5;
+            opacity: 0.95;
+        }
+
+        .plan-card ul li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            font-size: 1.2rem;
+            line-height: 1.3;
+        }
+
+        .card-verde { background-color: var(--verde); }
+        .card-rosa  { background-color: var(--rosa); }
+        .card-azul  { background-color: var(--azul); }
+
+        /* ===========================
+           SOBRE/HOME — APP SECTION
+        =========================== */
+        .app-section {
+            background-color: var(--azul);
+            padding: 100px 6%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 60px;
+            color: white;
+        }
+
+        .app-mockup {
+            width: 38%;
+            max-width: 380px;
+            transition: var(--transition);
+            flex-shrink: 0;
+        }
+
+        .app-mockup:hover {
+            transform: scale(1.03) translateY(-6px);
+        }
+
+        .app-content {
+            max-width: 500px;
+        }
+
+        .app-content h2 {
+            font-size: 3.2rem;
+            margin-bottom: 8px;
+        }
+
+        .app-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 24px;
+            opacity: 0.9;
+        }
+
+        .app-content p {
+            line-height: 1.75;
+            opacity: 0.9;
+            font-size: 0.97rem;
+        }
+
+        /* ===========================
+           APLICATIVO — HERO
+        =========================== */
+        .app-page-hero {
+            position: relative;
+            height: 60vh;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding: 0 8%;
+            overflow: hidden;
+        }
+
+        .app-page-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to left, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.1) 60%, transparent 100%);
+        }
+
+        .app-hero-overlay {
+            color: white;
+            max-width: 480px;
+            text-align: right;
+            position: relative;
+            z-index: 2;
+        }
+
+        .app-hero-overlay h2 {
+            font-size: 2.8rem;
+            margin-bottom: 16px;
+            text-shadow: 0 2px 12px rgba(0,0,0,0.3);
+        }
+
+        .app-hero-overlay p {
+            line-height: 1.7;
+            opacity: 0.95;
+            font-size: 0.97rem;
+        }
+
+        .app-wave-transition {
+            width: 100%;
+            height: 90px;
+            background-color: var(--verde);
+            clip-path: ellipse(70% 100% at 50% 100%);
+            margin-top: -88px;
+            position: relative;
+            z-index: 5;
+        }
+
+        .download-section {
+            background-color: var(--verde);
+            padding: 80px 6% 100px;
+            color: white;
+        }
+
+        .download-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .download-content h2 {
+            font-size: 2.4rem;
+            margin-bottom: 12px;
+        }
+
+        .download-content > p {
+            opacity: 0.9;
+            font-size: 1rem;
+            max-width: 500px;
+            line-height: 1.7;
+        }
+
+        .download-btns {
+            display: flex;
+            gap: 20px;
+            margin-top: 36px;
+            flex-wrap: wrap;
+        }
+
+        .store-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            border: 2px solid rgba(255,255,255,0.8);
+            padding: 16px 32px;
+            border-radius: 16px;
+            text-decoration: none;
+            color: white;
+            font-weight: 700;
+            transition: var(--transition);
+            backdrop-filter: blur(4px);
+            background: rgba(255,255,255,0.08);
+            font-size: 0.95rem;
+        }
+
+        .store-btn img { width: 28px; }
+
+        .store-btn:hover {
+            background: rgba(255,255,255,0.2);
+            border-color: white;
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 8px 28px rgba(0,0,0,0.18);
+        }
+
+        /* ===========================
+           CONTATO
+        =========================== */
+        .contato-social {
+            padding: 96px 6% 80px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            gap: 60px;
+            position: relative;
+        }
+
+        .social-text {
+            max-width: 500px;
+        }
+
+        .social-text h2 {
+            color: var(--roxo);
+            font-size: 3rem;
+            margin-bottom: 16px;
+        }
+
+        .social-text p {
+            color: #555;
+            line-height: 1.7;
+        }
+
+        .dog-img {
+            width: 320px;
+            max-width: 100%;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .dog-img:hover {
+            transform: scale(1.04) translateY(-6px);
+        }
+
+        .deco-paw  { position: absolute; width: 38px; opacity: 0.75; pointer-events: none; }
+        .deco-star { position: absolute; width: 22px; opacity: 0.75; pointer-events: none; }
+
+        .social-central-btns {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 40px 0;
+            background-color: var(--off-white);
+            flex-wrap: wrap;
+        }
+
+        .social-box {
+            background-color: var(--roxo);
+            width: 58px;
+            height: 58px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            cursor: pointer;
+            box-shadow: 0 4px 14px rgba(85, 44, 183, 0.25);
+        }
+
+        .social-box:hover {
+            transform: translateY(-6px) scale(1.08);
+            background-color: #6a3fd4;
+            box-shadow: 0 10px 28px rgba(85, 44, 183, 0.4);
+        }
+
+        .social-box img { width: 28px; }
+
+        /* ===========================
+           FORMULÁRIO DE CONTATO
+        =========================== */
+        .form-section {
+            padding: 80px 6% 100px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .form-card {
+            background-color: var(--rosa);
+            padding: 56px;
+            border-radius: 40px;
+            width: 100%;
+            max-width: 880px;
+            color: white;
+            box-shadow: var(--shadow-plan);
+        }
+
+        .form-card h2 {
+            font-size: 2.4rem;
+            margin-bottom: 44px;
+        }
+
+        .contact-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .full-width { grid-column: span 2; }
+
+        .contact-form input,
+        .contact-form textarea {
+            background-color: rgba(255,255,255,0.92);
+            border: 2px solid transparent;
+            padding: 15px 18px;
+            border-radius: 14px;
+            font-family: inherit;
+            font-size: 0.93rem;
+            width: 100%;
+            color: var(--preto);
+            transition: var(--transition);
+            outline: none;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            border-color: white;
+            background-color: white;
+            box-shadow: 0 0 0 4px rgba(255,255,255,0.2);
+        }
+
+        .contact-form textarea {
+            height: 150px;
+            resize: none;
+        }
+
+        .submit-btn {
+            grid-column: span 2;
+            justify-self: center;
+            background-color: white;
+            color: var(--rosa);
+            border: none;
+            padding: 15px 64px;
+            border-radius: 50px;
+            font-weight: 900;
+            cursor: pointer;
+            font-size: 1.05rem;
+            margin-top: 12px;
+            transition: var(--transition);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+            font-family: 'Nunito', sans-serif;
+        }
+
+        .submit-btn:hover {
+            background-color: var(--preto);
+            color: white;
+            transform: translateY(-3px) scale(1.04);
+            box-shadow: 0 10px 28px rgba(0,0,0,0.2);
+        }
+
+        /* ===========================
+           FOOTER
+        =========================== */
+        footer {
+            background-color: var(--rosa);
+            color: white;
+            padding: 72px 6% 32px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 48px;
+            max-width: 1200px;
+            margin: 0 auto 56px;
+        }
+
+        .footer-logo {
+            width: 140px;
+            margin-bottom: 20px;
+        }
+
+        .footer-col > p {
+            font-size: 0.9rem;
+            opacity: 0.85;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 14px;
+            margin-top: 16px;
+        }
+
+        .social-icons img {
+            width: 34px;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .social-icons img:hover {
+            transform: translateY(-3px) scale(1.1);
+        }
+
+        .footer-col h3 {
+            margin-bottom: 20px;
+            font-size: 1.15rem;
+        }
+
+        .footer-col ul { list-style: none; }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col a {
+            color: white;
+            text-decoration: none;
+            font-size: 0.92rem;
+            opacity: 0.85;
+            transition: var(--transition);
+            display: inline-block;
+        }
+
+        .footer-col a:hover {
+            opacity: 1;
+            transform: translateX(4px);
+        }
+
+        .newsletter-form {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .newsletter-form input {
+            background: rgba(255,255,255,0.12);
+            border: 2px solid rgba(255,255,255,0.5);
+            padding: 12px 16px;
+            border-radius: 12px;
+            color: white;
+            font-family: inherit;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            outline: none;
+        }
+
+        .newsletter-form input::placeholder {
+            color: rgba(255,255,255,0.65);
+        }
+
+        .newsletter-form input:focus {
+            border-color: white;
+            background: rgba(255,255,255,0.18);
+        }
+
+        .newsletter-btn {
+            background: white;
+            color: var(--rosa);
+            border: none;
+            padding: 12px 24px;
+            border-radius: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .newsletter-btn:hover {
+            background: var(--preto);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            padding-top: 24px;
+            font-size: 0.85rem;
+            opacity: 0.75;
+        }
+
+        /* ===========================
+           RESPONSIVIDADE
+        =========================== */
+        @media (max-width: 900px) {
+            .cause { flex-direction: column; gap: 48px; }
+            .cause-content, .cause-right { max-width: 100%; }
+            .sobre-hero { flex-direction: column; }
+            .sobre-left { min-height: 280px; }
+            .sobre-right { padding: 56px 6%; }
+            .sobre-right h2 { font-size: 2.2rem; }
+            .app-section { flex-direction: column; text-align: center; gap: 40px; }
+            .app-mockup { width: 60%; }
+            .app-content h2 { font-size: 2.5rem; }
+        }
+
+        @media (max-width: 768px) {
+            /* Nav */
+            nav { gap: 4px; }
+            nav a { padding: 8px 16px; font-size: 0.85rem; }
+
+            /* Hero */
+            .hero-top {
+                flex-direction: column;
+                text-align: center;
+                align-items: center;
+                gap: 32px;
+                padding: 0 5%;
+            }
+            .hero-text-side { text-align: center; max-width: 100%; }
+            .hero-text-side p { font-size: 0.97rem; }
+            .btn-group { justify-content: center; }
+            .logo-main { width: 160px; }
+
+            /* Cause */
+            .polaroid img { width: 140px; height: 140px; }
+            .cause-cta-area { text-align: center; }
+            .cause-cta-area p { margin: 12px auto 0; text-align: center; }
+
+            /* Reviews */
+            .review-card { padding: 32px 24px; }
+            .reviews h2 { font-size: 1.7rem; }
+
+            /* Plans */
+            .plan-card { min-width: 260px; }
+
+            /* App section */
+            .app-mockup { width: 75%; }
+            .app-content h2 { font-size: 2rem; }
+            .app-content h3 { font-size: 1.5rem; }
+
+            /* App page */
+            .app-page-hero { height: 50vh; padding: 0 5%; justify-content: center; }
+            .app-hero-overlay { text-align: center; }
+            .app-hero-overlay h2 { font-size: 2rem; }
+
+            /* Contato */
+            .contato-social {
+                flex-direction: column;
+                text-align: center;
+                align-items: center;
+                padding: 64px 6% 48px;
+                gap: 40px;
+            }
+            .social-text h2 { font-size: 2.2rem; }
+            .dog-img { width: 240px; }
+
+            /* Form */
+            .form-card { padding: 36px 28px; border-radius: 28px; }
+            .form-card h2 { font-size: 1.9rem; margin-bottom: 32px; }
+            .contact-form { grid-template-columns: 1fr; }
+            .contact-form .full-width { grid-column: span 1; }
+            .submit-btn { grid-column: span 1; width: 100%; }
+
+            /* Sobre */
+            .sobre-right h2 { font-size: 1.9rem; }
+            .plans-section { padding: 72px 5%; }
+            .plans-section h2 { font-size: 2rem; }
+
+            /* Download btns */
+            .download-btns { flex-direction: column; align-items: flex-start; }
+            .store-btn { width: 100%; max-width: 280px; }
+
+            /* Footer */
+            .footer-grid { gap: 36px; }
+        }
+
+        @media (max-width: 480px) {
+            nav a { padding: 7px 12px; font-size: 0.8rem; }
+            .hero-home { padding-top: 40px; }
+            .cause h2 { font-size: 2rem; }
+            .polaroid-gallery { gap: 12px; }
+            .polaroid img { width: 120px; height: 120px; }
+            .social-text h2 { font-size: 1.8rem; }
+            .app-hero-overlay h2 { font-size: 1.6rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav id="main-nav">
+            <a href="#home" class="active" onclick="showPage('home')">Home</a>
+            <a href="#sobre" onclick="showPage('sobre')">Sobre</a>
+            <a href="#aplicativo" onclick="showPage('aplicativo')">Aplicativo</a>
+            <a href="#contato" onclick="showPage('contato')">Contato</a>
+        </nav>
+    </header>
+
+    <!-- ==============================
+         PAGE 1: HOME
+    ============================== -->
+    <section id="home" class="active-page">
+
+        <div class="hero-home">
+            <div class="hero-top">
+                <img src="https://raw.githubusercontent.com/nckmacdodmd-gif/petnip/1d5665b10e3701b7bbd1a2eb0a6791cc6a5acb4c/Imagens%20Homepage/Logo%20principal.svg" alt="Petnip" class="logo-main">
+                <div class="hero-text-side">
+                    <p>Para cada animal em busca de um lar, existe um coração pronto para amar e, por meio da Petnip, você pode encontrar seu novo melhor amigo!</p>
+                    <div class="btn-group">
+                        <a href="#aplicativo" onclick="showPage('aplicativo')" class="btn btn-green">Baixe nosso app</a>
+                        <a href="#contato" onclick="showPage('contato')" class="btn btn-pink">Nos siga nas redes</a>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <img src="https://raw.githubusercontent.com/nckmacdodmd-gif/petnip/ac9fdbb9e31c8f2131e5999077cb90ffa524a75a/Imagens%20Homepage/Banner%20gatinho%20com%20%C3%B3culos.png" alt="Gatinho fofo" class="hero-img">
+                <div class="wave-bg"></div>
+            </div>
+        </div>
+
+        <div class="cause">
+            <div class="cause-content">
+                <h2>Faça parte dessa causa!</h2>
+                <div class="mission-card">
+                    <p>Nosso objetivo é facilitar e humanizar o processo de adoção e doação de suprimentos para ONGs que cuidam de animais em situação de vulnerabilidade. Buscamos oferecer aos usuários uma plataforma prática e acessível, que conecte corações dispostos a ajudar com causas que realmente precisam de apoio, seja por meio de adoção ou apadrinhamento.</p>
+                </div>
+            </div>
+            <div class="cause-right">
+                <div class="polaroid-gallery">
+                    <div class="polaroid">
+                        <img src="https://raw.githubusercontent.com/nckmacdodmd-gif/petnip/ac9fdbb9e31c8f2131e5999077cb90ffa524a75a/Imagens%20Homepage/Foto%20polaroid%20cachorro.jpg" alt="Cachorro" loading="lazy">
+                    </div>
+                    <div class="polaroid">
+                        <img src="https://raw.githubusercontent.com/nckmacdodmd-gif/petnip/ac9fdbb9e31c8f2131e5999077cb90ffa524a75a/Imagens%20Homepage/Foto%20polaroid%20gato.jpg" alt="Gato" loading="lazy">
+                    </div>
+                </div>
+                <div class="cause-cta-area">
+                    <a href="#sobre" onclick="showPage('sobre')" class="btn btn-white" style="font-weight: 900;">Saiba mais sobre nós</a>
+                    <p>A Organização Mundial de Saúde (OMS) estima que, no Brasil, cerca de 30 milhões de animais, majoritariamente cães e gatos, estejam em situações de rua. Pensando nisso, a Petnip veio para atuar como um mediador em procedimentos que, muitas vezes, são complexos e burocráticos.</p>
+                </div>
+            </div>
+        </div>
+
+        <img src="https://raw.githubusercontent.com/nckmacdodmd-gif/petnip/071b4d7e20b478d3194f00799c8abe6aac833512/%C3%8Dcones/Faixa%20de%20transi%C3%A7%C3%A3o.svg" alt="" role="presentation" class="transition-bar" loading="lazy">
+
+        <div class="reviews">
+            <h2>Leia nossos reviews, e adote com mais confiança!</h2>
+            <p class="rating">4.8/5 ⭐ — Baseado em 5.210 reviews</p>
+            <div class="review-card" onclick="nextReview()" role="button" aria-label="Ver próximo review">
+                <div class="stars">★★★★★</div>
+                <p id="review-text">"Como não posso ter pets no meu apartamento, a opção de apadrinhamento da Petnip foi perfeita. Consigo ajudar financeiramente um cãozinho de abrigo e acompanhar a rotina dele pelo app. Uma iniciativa linda!"</p>
+                <p style="margin-top: 20px; font-weight: 700; color: #555;">
+                    <span id="review-author">Camila Souza</span> — App Store
+                </p>
+            </div>
+        </div>
+
+        <div class="partners">
+            <h2>Nossos parceiros</h2>
+            <p>Conheça os parceiros que estão ao nosso lado, assumindo o compromisso com a causa animal.</p>
+            <img src="https://raw.githubusercontent.com/nckmacdodmd-gif/petnip/ac9fdbb9e31c8f2131e5999077cb90ffa524a75a/Imagens%20Homepage/Parcerias.png" alt="Logotipos dos Parceiros Petnip" loading="lazy">
+        </div>
+
+    </section>
+
+    <!-- ==============================
+         PAGE 2: SOBRE NÓS
+    ============================== -->
+    <section id="sobre">
+
+        <div class="sobre-hero">
+            <div class="sobre-left">
+                <img src="https://raw.githubusercontent.com/nckmacdodmd-gif/petnip/4a736eae486d19f6e259616229950bd2346a685b/Imagens%20P%C3%A1gina%20Sobre/Coelhinho%20de%20%C3%B3culos.png" alt="Coelhinho com óculos" loading="lazy">
+            </div>
+            <div class="sobre-right">
+                <p class="breadcrumb">Home › Sobre</p>
+                <h2>Adoção e apadrinhamento de pets!</h2>
+                <p>Encontre seu novo melhor amigo de forma fácil, segura e responsável. No nosso aplicativo, você pode encontrar uma seleção variada de pets, consultar ONGs e serviços veterinários parceiros, ou até mesmo cadastrar um amiguinho para doação. Tudo isso, em um único lugar.</p>
+            </div>
+        </div>
+
+        <div class="transition-pink-bar">
+            Baixe agora e faça parte dessa causa!
+        </div>
+
+        <div class="plans-section">
+            <h2>Nossos planos</h2>
+            <p>Conheça os planos de apadrinhamento que oferecemos no nosso aplicativo. Os valores arrecadados são destinados aos pets e à manutenção da plataforma.</p>
+            <div class="plans-grid">
+                <div class="plan-card card-verde">
+                    <h3>Plano A</h3>
+                    <div class="price">R$ 10 <small>/ mês</small></div>
+                    <ul>
+                        <li>Certificado digital de padrinho</li>
+                        <li>Nome listado no perfil do pet</li>
+                        <li>Atualizações por e-mail</li>
+                    </ul>
+                </div>
+                <div class="plan-card card-rosa">
+                    <h3>Plano B</h3>
+                    <div class="price">R$ 30 <small>/ mês</small></div>
+                    <ul>
+                        <li>Tudo do Plano A</li>
+                        <li>Relatório mensal com fotos do animal</li>
+                    </ul>
+                </div>
+                <div class="plan-card card-azul">
+                    <h3>Plano C</h3>
+                    <div class="price">R$ 50 <small>/ mês</small></div>
+                    <ul>
+                        <li>Tudo do Plano A e B</li>
+                        <li>Acompanhamento da saúde (vacinas e check-ups)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="app-section">
+            <img src="https://raw.githubusercontent.com/nckmacdodmd-gif/petnip/4a736eae486d19f6e259616229950bd2346a685b/Imagens%20P%C3%A1gina%20Sobre/Mockup%20celular.png" alt="Mockup do App Petnip" class="app-mockup" loading="lazy">
+            <div class="app-content">
+                <h2>Tá na mão!</h2>
+                <h3>Adote, Apadrinhe & Divulgue!</h3>
+                <a href="#aplicativo" onclick="showPage('aplicativo')" class="btn btn-pink" style="margin-bottom: 24px;">Baixe nosso app</a>
+                <p>A Petnip te conecta a uma comunidade de animais que precisam de um lar recheado de amor — você pode explorar por localização, raça, porte, e muito mais. E, com nossos planos de apadrinhamento, você também pode contribuir com alimentos, vacinas e cuidados especiais!</p>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- ==============================
+         PAGE 3: APLICATIVO
+    ============================== -->
+    <section id="aplicativo">
+
+        <div class="app-page-hero" style="background-image: url('https://raw.githubusercontent.com/nckmacdodmd-gif/petnip/b226c76e2947006a908c4d46799af900ef173b65/Imagens%20P%C3%A1gina%20Aplicativo/Mulher%20com%20o%20doguinho.jpg');">
+            <div class="app-hero-overlay">
+                <h2>Participe da comunidade!</h2>
+                <p>Nos orgulhamos de já termos contribuído para mais de 3.000 finais felizes, unindo pets que precisavam de uma segunda chance com pessoas dispostas a oferecer uma nova vida.</p>
+            </div>
+        </div>
+
+        <div class="app-wave-transition"></div>
+
+        <div class="download-section">
+            <div class="download-content">
+                <h2>Adote, apadrinhe e divulgue</h2>
+                <p>Junte-se aos milhares de usuários em todo o Brasil que contam com o app da Petnip para facilitar o dia a dia.</p>
+                <div class="download-btns">
+                    <a href="#" class="store-btn">
+                        <img src="https://raw.githubusercontent.com/nckmacdodmd-gif/petnip/b226c76e2947006a908c4d46799af900ef173b65/%C3%8Dcones/%C3%8Dcone%20Apple%20Store.svg" alt="Apple Store">
+                        Disponível na App Store
+                    </a>
+                    <a href="#" class="store-btn">
+                        <img src="https://raw.githubusercontent.com/nckmacdodmd-gif/petnip/b226c76e2947006a908c4d46799af900ef173b65/%C3%8Dcones/%C3%8Dcone%20Google%20Play.svg" alt="Google Play">
+                        Disponível no Google Play
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- ==============================
+         PAGE 4: CONTATO
+    ============================== -->
+    <section id="contato">
+
+        <div class="contato-social">
+            <div class="social-text">
+                <h2>Nos siga nas redes!</h2>
+                <p>Fique por dentro das novidades, dicas de cuidados e faça parte da comunidade mais fofa da internet!</p>
+            </div>
+            <img src="https://raw.githubusercontent.com/nckmacdodmd-gif/petnip/b226c76e2947006a908c4d46799af900ef173b65/Imagens%20P%C3%A1gina%20Contato/Buldogue%20tchutchuco.png" alt="Bulldog fofo" class="dog-img" loading="lazy">
+
+            <img src="https://github.com/nckmacdodmd-gif/petnip/blob/071b4d7e20b478d3194f00799c8abe6aac833512/%C3%8Dcones/Pata%20amarela.svg?raw=true" class="deco-paw" style="top: 10%; right: 10%;" alt="" aria-hidden="true" loading="lazy">
+            <img src="https://github.com/nckmacdodmd-gif/petnip/blob/071b4d7e20b478d3194f00799c8abe6aac833512/%C3%8Dcones/Pata%20rosa.svg?raw=true" class="deco-paw" style="top: 40%; left: 5%;" alt="" aria-hidden="true" loading="lazy">
+            <img src="https://github.com/nckmacdodmd-gif/petnip/blob/071b4d7e20b478d3194f00799c8abe6aac833512/%C3%8Dcones/Estrela%20rosa.svg?raw=true" class="deco-star" style="top: 20%; left: 20%;" alt="" aria-hidden="true" loading="lazy">
+            <img src="https://github.com/nckmacdodmd-gif/petnip/blob/071b4d7e20b478d3194f00799c8abe6aac833512/%C3%8Dcones/Estrela%20azul.svg?raw=true" class="deco-star" style="top: 15%; right: 40%;" alt="" aria-hidden="true" loading="lazy">
+        </div>
+
+        <img src="https://raw.githubusercontent.com/nckmacdodmd-gif/petnip/071b4d7e20b478d3194f00799c8abe6aac833512/%C3%8Dcones/Faixa%20de%20transi%C3%A7%C3%A3o.svg" alt="" role="presentation" class="transition-bar" style="margin-bottom: 40px;" loading="lazy">
+
+        <div class="social-central-btns">
+            <div class="social-box" role="link" aria-label="Facebook" tabindex="0">
+                <img src="https://raw.githubusercontent.com/nckmacdodmd-gif/petnip/071b4d7e20b478d3194f00799c8abe6aac833512/%C3%8Dcones/%C3%8Dcone%20Facebook.svg" alt="Facebook">
+            </div>
+            <div class="social-box" role="link" aria-label="TikTok" tabindex="0">
+                <img src="https://raw.githubusercontent.com/nckmacdodmd-gif/petnip/071b4d7e20b478d3194f00799c8abe6aac833512/%C3%8Dcones/%C3%8Dcone%20Tiktok.svg" alt="TikTok">
+            </div>
+            <div class="social-box" role="link" aria-label="X (Twitter)" tabindex="0">
+                <img src="https://raw.githubusercontent.com/nckmacdodmd-gif/petnip/071b4d7e20b478d3194f00799c8abe6aac833512/%C3%8Dcones/%C3%8Dcone%20X.svg" alt="X">
+            </div>
+            <div class="social-box" role="link" aria-label="Instagram" tabindex="0">
+                <img src="https://raw.githubusercontent.com/nckmacdodmd-gif/petnip/071b4d7e20b478d3194f00799c8abe6aac833512/%C3%8Dcones/%C3%8Dcone%20Instagram.svg" alt="Instagram">
+            </div>
+        </div>
+
+        <div class="form-section">
+            <div class="form-card">
+                <h2>Precisa de ajuda?</h2>
+                <form class="contact-form" onsubmit="return false;">
+                    <input type="text" placeholder="Nome e Sobrenome" autocomplete="name">
+                    <input type="tel" placeholder="Número de Telefone" autocomplete="tel">
+                    <input type="email" placeholder="E-mail" class="full-width" autocomplete="email">
+                    <input type="text" placeholder="Assunto" class="full-width">
+                    <textarea placeholder="Escreva sua mensagem" class="full-width" aria-label="Mensagem"></textarea>
+                    <button type="submit" class="submit-btn">Enviar</button>
+                </form>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- FOOTER (presente em todas as páginas) -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <img src="https://raw.githubusercontent.com/nckmacdodmd-gif/petnip/a46705644f824f8cd536a26bb03eed9fff0d0b18/Imagens%20Homepage/Logo%20off-white.svg" alt="Petnip" class="footer-logo" loading="lazy">
+                <p>Nos siga nas redes sociais:</p>
+                <div class="social-icons">
+                    <img src="https://raw.githubusercontent.com/nckmacdodmd-gif/petnip/b226c76e2947006a908c4d46799af900ef173b65/%C3%8Dcones/%C3%8Dcone%20Facebook.svg" alt="Facebook" loading="lazy">
+                    <img src="https://raw.githubusercontent.com/nckmacdodmd-gif/petnip/b226c76e2947006a908c4d46799af900ef173b65/%C3%8Dcones/%C3%8Dcone%20Tiktok.svg" alt="TikTok" loading="lazy">
+                    <img src="https://raw.githubusercontent.com/nckmacdodmd-gif/petnip/b226c76e2947006a908c4d46799af900ef173b65/%C3%8Dcones/%C3%8Dcone%20X.svg" alt="X" loading="lazy">
+                    <img src="https://raw.githubusercontent.com/nckmacdodmd-gif/petnip/b226c76e2947006a908c4d46799af900ef173b65/%C3%8Dcones/%C3%8Dcone%20Instagram.svg" alt="Instagram" loading="lazy">
+                </div>
+            </div>
+            <div class="footer-col">
+                <h3>Mapa do site</h3>
+                <ul>
+                    <li><a href="#home" onclick="showPage('home')">Home</a></li>
+                    <li><a href="#sobre" onclick="showPage('sobre')">Sobre nós</a></li>
+                    <li><a href="#aplicativo" onclick="showPage('aplicativo')">Aplicativo</a></li>
+                    <li><a href="#contato" onclick="showPage('contato')">Contato</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Newsletter</h3>
+                <form class="newsletter-form" onsubmit="return false;">
+                    <input type="email" placeholder="Digite seu e-mail" autocomplete="email">
+                    <button type="submit" class="newsletter-btn">Inscrever-se</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            Privacidade &nbsp;|&nbsp; Gerencie seus dados &nbsp;|&nbsp; Gerencie seus cookies
+        </div>
+    </footer>
+
+    <script>
+        /* ==============================
+           SPA — TROCA DE PÁGINAS
+        ============================== */
+        function showPage(pageId) {
+            // Atualiza link ativo
+            document.querySelectorAll('nav a').forEach(link => {
+                link.classList.toggle('active', link.getAttribute('href') === '#' + pageId);
+            });
+
+            // Esconde seção atual com fade-out leve e exibe nova seção
+            const current = document.querySelector('section.active-page');
+            const next    = document.getElementById(pageId);
+
+            if (current && current !== next) {
+                current.style.transition = 'opacity 0.18s ease';
+                current.style.opacity = '0';
+                setTimeout(() => {
+                    current.classList.remove('active-page');
+                    current.style.opacity = '';
+                    current.style.transition = '';
+                    next.classList.add('active-page');
+                    window.scrollTo({ top: 0, behavior: 'instant' });
+                }, 180);
+            } else if (!current) {
+                next.classList.add('active-page');
+                window.scrollTo({ top: 0, behavior: 'instant' });
+            }
+        }
+
+        /* ==============================
+           REVIEWS — CAROUSEL
+        ============================== */
+        const reviews = [
+            {
+                text: '"Como não posso ter pets no meu apartamento, a opção de apadrinhamento da Petnip foi perfeita. Consigo ajudar financeiramente um cãozinho de abrigo e acompanhar a rotina dele pelo app. Uma iniciativa linda!"',
+                author: "Camila Souza"
+            },
+            {
+                text: '"Adotei o Thor através do app e foi a melhor decisão da minha vida. O processo foi super transparente e o suporte da Petnip foi incrível!"',
+                author: "Marcos Oliveira"
+            },
+            {
+                text: '"Plataforma moderna e fácil de usar. Os perfis dos pets são muito detalhados, o que ajuda muito a encontrar um companheiro compatível."',
+                author: "Julia Mendes"
+            }
+        ];
+
+        let currentReview = 0;
+
+        function nextReview() {
+            const textEl   = document.getElementById('review-text');
+            const authorEl = document.getElementById('review-author');
+
+            // Fade out
+            textEl.classList.add('fade');
+
+            setTimeout(() => {
+                currentReview = (currentReview + 1) % reviews.length;
+                textEl.innerText   = reviews[currentReview].text;
+                authorEl.innerText = reviews[currentReview].author;
+                textEl.classList.remove('fade');
+            }, 280);
+        }
+    </script>
+</body>
+</html>
