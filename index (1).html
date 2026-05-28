@@ -254,16 +254,22 @@
         }
 
         .hero-img {
-            z-index: 2;
-            width: 80%;
-            max-width: 900px;
-            display: block;
-            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-        }
+    z-index: 2;
+    width: 80%;
+    max-width: 900px;
+    display: block;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    /* Adiciona uma sombra suave no contorno exato do gato */
+    filter: drop-shadow(0 25px 35px rgba(0, 0, 0, 0.15));
+    /* Faz a animação de hover crescer a partir da base, não do centro */
+    transform-origin: bottom center; 
+}
 
-        .hero-img:hover {
-            transform: scale(1.015) translateY(-4px);
-        }
+.hero-img:hover {
+    transform: scale(1.02) translateY(-4px);
+    /* Aumenta a sombra no hover para dar sensação de elevação */
+    filter: drop-shadow(0 35px 45px rgba(0, 0, 0, 0.2)); 
+}
 
         /* ===========================
            HOME — CAUSA
@@ -816,15 +822,21 @@
             line-height: 1.7;
         }
 
-        .dog-img {
-            width: 320px;
-            max-width: 100%;
-            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-        }
+      .dog-img {
+    width: 320px;
+    max-width: 100%;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    /* Sombra no contorno exato do cachorro */
+    filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.18));
+    position: relative;
+    z-index: 2;
+    transform-origin: bottom center;
+}
 
-        .dog-img:hover {
-            transform: scale(1.04) translateY(-6px);
-        }
+.dog-img:hover {
+    transform: scale(1.04) translateY(-6px);
+    filter: drop-shadow(0 30px 40px rgba(0, 0, 0, 0.22));
+}
 
         .deco-paw  { position: absolute; width: 38px; opacity: 0.75; pointer-events: none; }
         .deco-star { position: absolute; width: 22px; opacity: 0.75; pointer-events: none; }
