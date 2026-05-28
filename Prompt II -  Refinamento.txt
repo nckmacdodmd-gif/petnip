@@ -1,1 +1,29 @@
-[Inserir Prompt]
+Atue como um Engenheiro Front-end Sênior e Especialista em UI/UX.
+
+Eu tenho o código inicial de uma Single Page Application (SPA) para um projeto chamado "Petnip". O código atual funciona, mas a interface está muito básica, as transições são abruptas e a performance/responsividade pode melhorar.
+
+Gostaria que você refatorasse o código HTML, CSS e JS fornecido abaixo, aplicando as seguintes melhorias:
+
+1. Interface e Experiência (UI/UX) - O mais importante:
+
+Transições Suaves: Altere o JavaScript e o CSS das <section>. A troca de páginas (Home, Sobre, etc.) não pode ser um corte seco. Adicione uma animação suave de fade-in ou um leve slide quando uma nova página for exibida.
+
+Efeitos de Interação (Hover): Melhore o feedback visual. Adicione efeitos de hover mais modernos nos botões (mudança leve de cor, escala ou sombra) e nos links de navegação.
+
+Espaçamento e Respiro (Whitespace): Ajuste os paddings e margins para que os elementos não pareçam "espremidos". As seções precisam respirar.
+
+Sombras e Profundidade: Refine o box-shadow dos cards (como os de planos e a missão) para que fiquem mais suaves e modernos, fugindo do aspecto chapado.
+
+2. Responsividade (Mobile-First):
+
+Revise a media query existente (max-width: 768px). Garanta que os textos diminuam proporcionalmente, que as imagens não quebrem o layout e que a navegação do <header> funcione bem em telas pequenas (se necessário, sugira transformar os links em um layout adaptado para celular).
+
+3. Performance e Boas Práticas:
+
+Adicione o atributo loading="lazy" em todas as imagens que estão abaixo da "dobra" da página para melhorar o tempo de carregamento inicial.
+
+Mantenha o uso semântico do HTML e a estrutura de variáveis CSS (:root), apenas otimizando onde for necessário.
+
+Retorne o código completo em um único arquivo, pronto para ser testado.
+
+[Código]
