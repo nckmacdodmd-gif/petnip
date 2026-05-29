@@ -339,26 +339,9 @@
         /* ===========================
            HOME — REVIEWS & PARCEIROS
         =========================== */
-       .reviews { 
-            background-color: var(--off-white); 
-            padding: 100px 6%; 
-            text-align: left; /* Alterado para esquerda */
-        }
-        
-        .reviews h2 { 
-            color: var(--roxo); 
-            font-size: 2.1rem; 
-            max-width: 700px; 
-            margin: 0; /* Removido o "0 auto" para não centralizar */
-        }
-        
-        .reviews .rating { 
-            font-weight: 700; 
-            margin-top: 12px; 
-            color: #555; 
-            font-size: 0.95rem; 
-        }
-
+        .reviews { background-color: var(--off-white); padding: 100px 6%; text-align: center; }
+        .reviews h2 { color: var(--roxo); font-size: 2.1rem; max-width: 700px; margin: 0 auto; }
+        .reviews .rating { font-weight: 700; margin-top: 12px; color: #555; font-size: 0.95rem; }
         .review-card { background-color: var(--card-cinza); max-width: 780px; margin: 48px auto 0; padding: 44px; border-radius: 32px; cursor: pointer; transition: var(--transition); box-shadow: var(--shadow-soft); position: relative; overflow: hidden; }
         .review-card::after { content: 'Clique para próximo →'; position: absolute; bottom: 16px; right: 24px; font-size: 0.78rem; color: #999; font-weight: 600; }
         .review-card:hover { transform: scale(1.025) translateY(-4px); box-shadow: var(--shadow-hover); background-color: #e0e0e0; }
@@ -366,18 +349,12 @@
         #review-text { font-size: 1rem; line-height: 1.75; color: #333; transition: opacity 0.3s ease; }
         #review-text.fade { opacity: 0; }
         
-        .partners { 
-            background-color: var(--off-white); 
-            padding: 40px 6% 100px; 
-            max-width: 1200px; 
-            margin: 0 auto; 
-            text-align: left; /* Alterado para esquerda */
-        }
-        
+        .partners { background-color: var(--off-white); padding: 40px 6% 100px; max-width: 1200px; margin: 0 auto; text-align: center; }
         .partners h2 { color: var(--verde); margin-bottom: 12px; font-size: 1.9rem; }
         .partners > p { margin-bottom: 44px; color: #555; font-size: 0.98rem; }
         .partners img { width: 100%; max-width: 1000px; display: block; margin: 0 auto; filter: grayscale(20%); transition: var(--transition); }
         .partners img:hover { filter: grayscale(0%); }
+
         /* ===========================
            SOBRE NÓS
         =========================== */
