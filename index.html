@@ -139,6 +139,9 @@
         .btn-white { background-color: white; color: var(--rosa); border: 2px solid var(--rosa); }
         .btn-white:hover { background-color: var(--rosa); color: white; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(251, 125, 168, 0.3); }
 
+        .btn-purple { background-color: var(--roxo); color: white; }
+        .btn-purple:hover { background-color: #432292; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(85, 44, 183, 0.3); }
+
         /* ===========================
            HOME — HERO (NOVO LAYOUT)
         =========================== */
@@ -147,10 +150,10 @@
             position: relative;
             padding-top: 160px; 
             min-height: 70vh; 
-            padding-bottom: 220px; /* Respiro gigante para a onda não encostar no logo */
+            padding-bottom: 220px; 
             display: flex;
             flex-direction: column;
-            justify-content: center; /* Centraliza o conteúdo verticalmente */
+            justify-content: center; 
             overflow: hidden;
         }
 
@@ -200,13 +203,13 @@
         /* Onda Base Rosa ajustada perfeitamente */
         .hero-bottom-wave {
             position: absolute;
-            bottom: -1px; /* Evita fresta sub-pixel */
+            bottom: -1px; 
             left: 0;
             width: 100%;
-            height: 22.22vw; /* Proporção exata do viewbox 320/1440 */
+            height: 22.22vw; 
             min-height: 100px;
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1440 320' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%23fb7da8' d='M0,224L60,202.7C120,181,240,139,360,138.7C480,139,600,181,720,208C840,235,960,245,1080,229.3C1200,213,1320,171,1380,149.3L1440,128L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z'/%3E%3C/svg%3E");
-            background-size: 100% 100%; /* Força o preenchimento exato da largura e altura sem cortes */
+            background-size: 100% 100%; 
             background-position: bottom left;
             background-repeat: no-repeat;
             z-index: 1;
@@ -239,8 +242,10 @@
         .polaroid:hover { box-shadow: var(--shadow-hover); z-index: 2; }
         .polaroid:nth-child(1):hover { transform: rotate(-2deg) scale(1.04); }
         .polaroid:nth-child(2):hover { transform: rotate(2deg) scale(1.04); }
-        .cause-cta-area { text-align: right; width: 100%; }
-        .cause-cta-area p { margin-top: 20px; font-size: 0.88rem; max-width: 350px; margin-left: auto; opacity: 0.9; line-height: 1.65; }
+        
+        .cause-cta-area { text-align: left; width: 100%; margin-top: 16px; }
+        .cause-cta-area p { margin-top: 24px; font-size: 1rem; max-width: 480px; margin-left: 0; opacity: 0.95; line-height: 1.7; font-weight: 400; }
+        
         .transition-bar { width: 100%; display: block; line-height: 0; background-color: var(--off-white); }
 
         /* ===========================
@@ -444,8 +449,8 @@
                     <div class="polaroid"><img src="https://raw.githubusercontent.com/nckmacdodmd-gif/petnip/ac9fdbb9e31c8f2131e5999077cb90ffa524a75a/Imagens%20Homepage/Foto%20polaroid%20gato.jpg" alt="Gato" loading="lazy"></div>
                 </div>
                 <div class="cause-cta-area">
-                    <a href="#sobre" onclick="showPage('sobre')" class="btn btn-white" style="font-weight: 900;">Saiba mais sobre nós</a>
-                    <p>A Organização Mundial de Saúde (OMS) estima que, no Brasil, cerca de 30 milhões de animais, majoritariamente cães e gatos, estejam em situações de rua. Pensando nisso, a Petnip veio para atuar como um mediador em procedimentos que, muitas vezes, são complexos e burocráticos.</p>
+                    <a href="#sobre" onclick="showPage('sobre')" class="btn btn-purple" style="font-weight: 400;">Saiba mais sobre nós</a>
+                    <p>A Organização Mundial de Saúde (OMS) estima que, no Brasil, cerca de 30 milhões de animais, majoritariamente cães e gatos, estejam em situações de rua.<br><br>Pensando nisso, a Petnip veio para atuar como um mediador em procedimentos que, muitas vezes, são complexos e burocráticos.</p>
                 </div>
             </div>
         </div>
