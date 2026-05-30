@@ -295,13 +295,37 @@
         .plan-card ul li::before { content: '•'; position: absolute; left: 0; font-size: 1.2rem; }
         .card-verde { background-color: var(--verde); } .card-rosa { background-color: var(--rosa); } .card-azul { background-color: var(--azul); }
 
-        .app-section { background-color: var(--azul); padding: 100px 6%; display: flex; align-items: center; justify-content: center; gap: 60px; color: white; }
-        .app-mockup { width: 38%; max-width: 380px; transition: var(--transition); }
-        .app-mockup:hover { transform: scale(1.03) translateY(-6px); }
-        .app-content { max-width: 500px; }
-        .app-content h2 { font-size: 3.2rem; margin-bottom: 8px; }
-        .app-content h3 { font-size: 1.8rem; margin-bottom: 24px; opacity: 0.9; }
-        .app-content p { line-height: 1.75; opacity: 0.9; font-size: 0.97rem; }
+        /* Nova Seção do App - Ajustada para o mockup gigante lado a lado */
+        .app-section {
+            background-color: var(--azul);
+            padding: 80px 6% 0; /* Padding inferior 0 para o celular encostar na base */
+            display: flex;
+            align-items: center; /* Centraliza verticalmente o texto com o celular */
+            justify-content: center; /* Mantém os itens agrupados no centro */
+            gap: 80px; /* Espaço ideal entre o celular e o texto */
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        .app-mockup { 
+            width: 55%; 
+            max-width: 750px; /* Permite que o celular fique imenso em monitores grandes */
+            margin-bottom: 40px; /* Um tiquinho a mais pra cima! Kkkk */
+            transition: var(--transition);
+            transform-origin: bottom center; /* Para o hover crescer de baixo pra cima */
+        }
+        .app-mockup:hover { 
+            transform: scale(1.03) translateY(-6px); 
+        }
+        .app-content { 
+            flex: 1;
+            max-width: 520px; 
+            text-align: left; /* Trazendo o texto de volta para a esquerda! */
+            padding-bottom: 80px; /* Empurra o texto um pouco para cima para balancear visualmente */
+        }
+        .app-content h2 { font-size: 3.5rem; margin-bottom: 4px; }
+        .app-content h3 { font-size: 1.6rem; margin-bottom: 32px; font-weight: 400; opacity: 0.95; }
+        .app-content p { line-height: 1.75; opacity: 0.95; font-size: 1.05rem; }
 
         /* ===========================
            APLICATIVO 
@@ -381,9 +405,28 @@
             .cause-content, .cause-right { max-width: 100%; text-align: center;}
             .cause-cta-area { text-align: center; }
             .cause-cta-area p { margin: 12px auto 0; }
+            
             .sobre-hero { flex-direction: column; }
-            .app-section { flex-direction: column; text-align: center; gap: 40px; }
-            .app-mockup { width: 60%; }
+            
+            /* Ajustes do App na Responsividade */
+            .app-section { 
+                flex-direction: column-reverse; /* Coloca o celular embaixo em telas menores */
+                text-align: center; 
+                gap: 40px; 
+                padding-top: 80px;
+                padding-bottom: 0;
+            }
+            .app-mockup { 
+                width: 85%; 
+                max-width: 550px; 
+                margin-bottom: 20px; /* Mantém rente à base na versão mobile também (um pouco mais alto) */
+            }
+            .app-content { 
+                width: 100%;
+                max-width: 100%; 
+                padding-bottom: 0; 
+                text-align: center; /* Centraliza no mobile */
+            }
         }
 
         @media (max-width: 768px) {
@@ -529,8 +572,8 @@
             <div class="app-content">
                 <h2>Tá na mão!</h2>
                 <h3>Adote, Apadrinhe & Divulgue!</h3>
-                <a href="#aplicativo" onclick="showPage('aplicativo')" class="btn btn-pink" style="margin-bottom: 24px;">Baixe nosso app</a>
-                <p>A Petnip te conecta a uma comunidade de animais que precisam de um lar recheado de amor — você pode explorar por localização, raça, porte, e muito mais. E, com nossos planos de apadrinhamento, você também pode contribuir com alimentos, vacinas e cuidados especiais!</p>
+                <a href="#aplicativo" onclick="showPage('aplicativo')" class="btn btn-pink" style="margin-bottom: 32px;">Baixe nosso app</a>
+                <p>A Petnip te conecta a uma comunidade de animais que precisam de um lar recheado de amor — você pode explorar por localização, raça, porte, e muito mais. E, com nossos planos de apadrinhamento, você também pode contribuir com alimentos, vacinas e cuidados especiais! Você não vai ficar de fora, né!?</p>
             </div>
         </div>
 
