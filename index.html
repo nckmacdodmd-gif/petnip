@@ -136,21 +136,21 @@
         .btn-pink { background-color: var(--rosa); color: white; }
         .btn-pink:hover { background-color: #f96899; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(251, 125, 168, 0.3); }
 
-        .btn-roxo { background-color: var(--roxo); color: white; padding: 14px 32px; border-radius: 50px; text-decoration: none; font-weight: 700; transition: var(--transition); display: inline-block; }
-        .btn-roxo:hover { background-color: #432292; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(85,44,183,0.3); }
+        .btn-white { background-color: white; color: var(--rosa); border: 2px solid var(--rosa); }
+        .btn-white:hover { background-color: var(--rosa); color: white; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(251, 125, 168, 0.3); }
 
         /* ===========================
-           HOME — HERO (SEM GATO)
+           HOME — HERO (NOVO LAYOUT)
         =========================== */
         .hero-home {
             background-color: var(--off-white);
             position: relative;
             padding-top: 160px; 
             min-height: 70vh; 
-            padding-bottom: 220px; 
+            padding-bottom: 220px; /* Respiro gigante para a onda não encostar no logo */
             display: flex;
             flex-direction: column;
-            justify-content: center; 
+            justify-content: center; /* Centraliza o conteúdo verticalmente */
             overflow: hidden;
         }
 
@@ -197,13 +197,13 @@
             flex-wrap: wrap;
         }
 
-        /* Onda Base Rosa */
+        /* Onda Base Rosa ajustada */
         .hero-bottom-wave {
             position: absolute;
-            bottom: -5px; 
+            bottom: -5px; /* Puxa um pouquinho pra baixo pra evitar linha branca */
             left: 0;
             width: 100%;
-            height: 200px; 
+            height: 200px; /* Mais baixa que antes */
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1440 320' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%23fb7da8' d='M0,224L60,202.7C120,181,240,139,360,138.7C480,139,600,181,720,208C840,235,960,245,1080,229.3C1200,213,1320,171,1380,149.3L1440,128L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z'/%3E%3C/svg%3E");
             background-size: cover;
             background-position: center bottom;
@@ -212,9 +212,9 @@
         }
 
         /* ===========================
-           HOME — CAUSA (ESTÉTICA LIMPA)
+           HOME — CAUSA
         =========================== */
-        .cause {
+       .cause {
             background-color: var(--rosa);
             padding: 60px 6% 60px;
             display: flex;
@@ -271,75 +271,17 @@
             align-items: flex-start;
             gap: 25px;
         }
-
-        /* ===========================
-           NOVAS POLAROIDS TORTINHAS
-        =========================== */
-        .polaroid-gallery {
-            display: flex; 
-            position: relative; 
-            width: 100%; 
-            justify-content: center; 
-            align-items: flex-start;
-            margin-bottom: 40px;
-            padding-top: 10px;
-            padding-bottom: 30px; /* Dá respiro para a foto que desce */
-        }
-
-        .polaroid { 
-            background: white; 
-            padding: 12px 12px 48px 12px; /* Borda bem grossa embaixo igual polaroid real */
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15); 
-            transition: transform 0.4s ease, box-shadow 0.4s ease, z-index 0s; 
-            position: relative;
-        }
-        
-        .polaroid img { 
-            width: 170px; 
-            height: 170px; 
-            object-fit: cover; 
-            display: block; 
-        }
-
-        /* Foto 1 (Cachorro) - Torta para a esquerda */
-        .polaroid:nth-child(1) { 
-            transform: rotate(-12deg); 
-            z-index: 1;
-        }
-        
-        /* Foto 2 (Gato) - Torta para a direita, sobreposta e mais para baixo */
-        .polaroid:nth-child(2) { 
-            transform: rotate(10deg); 
-            z-index: 2;
-            margin-left: -35px; /* Puxa para cima da foto 1 */
-            margin-top: 45px;   /* Empurra para baixo */
-        }
-        
-        /* Efeitos de Hover preservando as rotações base para não dar soco visual */
-        .polaroid:nth-child(1):hover { 
-            transform: rotate(-8deg) scale(1.06); 
-            box-shadow: 0 15px 35px rgba(0,0,0,0.3); 
-            z-index: 5; 
-        }
-
-        .polaroid:nth-child(2):hover { 
-            transform: rotate(6deg) scale(1.06); 
-            box-shadow: 0 15px 35px rgba(0,0,0,0.3); 
-            z-index: 5; 
-        }
-
-        /* Decorações do lado direito (Estrelas) */
-        .star-deco-right-1 { position: absolute; top: -10px; right: 40px; width: 45px; transform: rotate(15deg); z-index: 0; }
-        .star-deco-right-2 { position: absolute; bottom: 0px; left: 50px; width: 25px; transform: rotate(-10deg); z-index: 3; }
-
-        .cause-text {
-            text-align: left; 
-            font-size: 0.95rem;
-            line-height: 1.7;
-            opacity: 0.9;
-        }
-
-        .transition-bar { width: 100%; display: block; line-height: 0; margin-top: -2px;}
+        .polaroid-gallery { display: flex; gap: 24px; }
+        .polaroid { background: white; padding: 10px 10px 44px 10px; box-shadow: var(--shadow-card); transition: var(--transition); }
+        .polaroid img { width: 180px; height: 180px; object-fit: cover; display: block; }
+        .polaroid:nth-child(1) { transform: rotate(-5deg); }
+        .polaroid:nth-child(2) { transform: rotate(5deg); }
+        .polaroid:hover { box-shadow: var(--shadow-hover); z-index: 2; }
+        .polaroid:nth-child(1):hover { transform: rotate(-2deg) scale(1.04); }
+        .polaroid:nth-child(2):hover { transform: rotate(2deg) scale(1.04); }
+        .cause-cta-area { text-align: right; width: 100%; }
+        .cause-cta-area p { margin-top: 20px; font-size: 0.88rem; max-width: 350px; margin-left: auto; opacity: 0.9; line-height: 1.65; }
+        .transition-bar { width: 100%; display: block; line-height: 0; background-color: var(--off-white); }
 
         /* ===========================
            HOME — REVIEWS & PARCEIROS
@@ -470,9 +412,10 @@
             .hero-text-box { width: 100%; max-width: 100%; }
             .hero-btn-group { justify-content: center; }
             
-            .cause { flex-direction: column; gap: 48px; align-items: center; text-align: center; }
-            .cause-right { align-items: center; }
-            .cause-text { text-align: center; }
+            .cause { flex-direction: column; gap: 48px; }
+            .cause-content, .cause-right { max-width: 100%; text-align: center;}
+            .cause-cta-area { text-align: center; }
+            .cause-cta-area p { margin: 12px auto 0; }
             .sobre-hero { flex-direction: column; }
             .app-section { flex-direction: column; text-align: center; gap: 40px; }
             .app-mockup { width: 60%; }
@@ -485,10 +428,7 @@
             
             .hero-home { padding-top: 40px; min-height: 50vh; padding-bottom: 150px; }
 
-            /* Ajuste das polaroids para mobile (diminuindo para não quebrar a tela) */
-            .polaroid img { width: 130px; height: 130px; }
-            .polaroid:nth-child(2) { margin-left: -20px; margin-top: 30px; }
-
+            .polaroid img { width: 140px; height: 140px; }
             .review-card { padding: 32px 24px; }
             .app-page-hero { height: 50vh; justify-content: center; padding: 0 5%;}
             .app-hero-overlay { text-align: center; }
@@ -533,37 +473,20 @@
 
         <div class="cause">
             <div class="cause-content">
-                <h2>Faça parte<br>dessa causa!</h2>
-                
+                <h2>Faça parte dessa causa!</h2>
                 <div class="mission-card">
-                    <img src="https://github.com/nckmacdodmd-gif/petnip/blob/071b4d7e20b478d3194f00799c8abe6aac833512/%C3%8Dcones/Clipe.svg?raw=true" alt="" class="clip-deco" onerror="this.style.display='none'">
-
-                    <p>Nosso objetivo é <strong>facilitar e humanizar o processo de adoção e doação de suprimentos para ONGs que cuidam de animais</strong> em situação de vulnerabilidade.</p>
-                    <p>Buscamos oferecer aos usuários uma plataforma prática e acessível, que conecte corações dispostos a ajudar com causas que realmente precisam de apoio, seja por meio de adoção ou apadrinhamento.</p>
-                    
-                    <img src="https://raw.githubusercontent.com/nckmacdodmd-gif/petnip/071b4d7e20b478d3194f00799c8abe6aac833512/%C3%8Dcones/Estrela%20amarela.svg" alt="" class="star-deco-left" onerror="this.style.display='none'">
+                    <p>Nosso objetivo é facilitar e humanizar o processo de adoção e doação de suprimentos para ONGs que cuidam de animais em situação de vulnerabilidade. Buscamos oferecer aos usuários uma plataforma prática e acessível, que conecte corações dispostos a ajudar com causas que realmente precisam de apoio, seja por meio de adoção ou apadrinhamento.</p>
                 </div>
             </div>
-
             <div class="cause-right">
                 <div class="polaroid-gallery">
-                    <img src="https://raw.githubusercontent.com/nckmacdodmd-gif/petnip/071b4d7e20b478d3194f00799c8abe6aac833512/%C3%8Dcones/Estrela%20amarela.svg" alt="" class="star-deco-right-1" onerror="this.style.display='none'">
-                    <img src="https://raw.githubusercontent.com/nckmacdodmd-gif/petnip/071b4d7e20b478d3194f00799c8abe6aac833512/%C3%8Dcones/Estrela%20amarela.svg" alt="" class="star-deco-right-2" onerror="this.style.display='none'">
-                    
-                    <div class="polaroid">
-                        <img src="https://raw.githubusercontent.com/nckmacdodmd-gif/petnip/ac9fdbb9e31c8f2131e5999077cb90ffa524a75a/Imagens%20Homepage/Foto%20polaroid%20cachorro.jpg" alt="Cachorro">
-                    </div>
-                    <div class="polaroid">
-                        <img src="https://raw.githubusercontent.com/nckmacdodmd-gif/petnip/ac9fdbb9e31c8f2131e5999077cb90ffa524a75a/Imagens%20Homepage/Foto%20polaroid%20gato.jpg" alt="Gato">
-                    </div>
+                    <div class="polaroid"><img src="https://raw.githubusercontent.com/nckmacdodmd-gif/petnip/ac9fdbb9e31c8f2131e5999077cb90ffa524a75a/Imagens%20Homepage/Foto%20polaroid%20cachorro.jpg" alt="Cachorro" loading="lazy"></div>
+                    <div class="polaroid"><img src="https://raw.githubusercontent.com/nckmacdodmd-gif/petnip/ac9fdbb9e31c8f2131e5999077cb90ffa524a75a/Imagens%20Homepage/Foto%20polaroid%20gato.jpg" alt="Gato" loading="lazy"></div>
                 </div>
-                
-                <a href="#sobre" onclick="showPage('sobre')" class="btn-roxo">Saiba mais sobre nós</a>
-                
-                <p class="cause-text">
-                    A Organização Mundial de Saúde (OMS) estima que, no Brasil, cerca de 30 milhões de animais, majoritariamente cães e gatos, estejam em situações de rua.<br>
-                    Pensando nisso, a Petnip veio para atuar como um mediador em procedimentos que, muitas vezes, são complexos e burocráticos.
-                </p>
+                <div class="cause-cta-area">
+                    <a href="#sobre" onclick="showPage('sobre')" class="btn btn-white" style="font-weight: 900;">Saiba mais sobre nós</a>
+                    <p>A Organização Mundial de Saúde (OMS) estima que, no Brasil, cerca de 30 milhões de animais, majoritariamente cães e gatos, estejam em situações de rua. Pensando nisso, a Petnip veio para atuar como um mediador em procedimentos que, muitas vezes, são complexos e burocráticos.</p>
+                </div>
             </div>
         </div>
 
